@@ -41,8 +41,6 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 #figlet -f smslant hello there | lolcat -t -F 0.2
 #fortune | cowsay -W 80 -s -f eyes || fortune | cowsay -W 80 -s
 export PATH=/usr/lib/ccache/bin/:$PATH:$HOME/scripts:$HOME/.emacs.d/bin
-export EDITOR="emacsclient"
-export VISUAL="emacsclient"
 export PATH="$HOME/.node/bin:$HOME/.cargo/bin:$PATH:$HOME/cs/golang/bin"
 export NODE_PATH="$HOME/.node/lib/node_modules:$NODE_PATH"
 export GOPATH="$HOME/cs/golang"
