@@ -12,6 +12,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'morhetz/gruvbox' " Current theme
     " Utilities
     Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-unimpaired'
     Plug 'mhinz/vim-startify'
     " Plug 'edkolev/tmuxline.vim'
