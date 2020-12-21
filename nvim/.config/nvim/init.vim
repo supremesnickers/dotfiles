@@ -69,6 +69,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'norcalli/nvim-colorizer.lua'
 
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+
     Plug 'scrooloose/syntastic'
     Plug 'rust-lang/rust.vim'
     Plug 'tpope/vim-commentary'
@@ -98,9 +101,18 @@ command! -nargs=0 CompileAndRun call TermWrapper(printf('rustc %s -o out && ./%s
 autocmd FileType rust nnoremap <F6> :CompileAndRun<CR>
 
 " KEY MAPPINGS
-let mapleader=","
+let mapleader=" "
 
 nmap <leader>e :Explore<CR>
+
+nmap <leader>. <c-^>
+
+" fzf
+nmap <leader>ff :Files<CR>
+command! -bang -nargs=? -complete=dir DotFiles call fzf#vim#files('~/dotfiles', <bang>0)
+nmap <leader>fc :Commands<CR>
+nmap <leader>fh :History<CR>
+nmap <leader>fb :Buffers<CR>
 
 " Remap keys for gotos COC
 nmap <silent> gd <Plug>(coc-definition)
@@ -124,20 +136,17 @@ nnoremap <leader>1 1gt
 nnoremap <leader>2 2gt
 nnoremap <leader>3 3gt
 
+" go back to startify
+map <leader>os :Startify<CR>
 " save and quit with double escape
 map <Esc><Esc> :wq<CR>
 " Turn on fs tree with Control-O
-map <leader>o :NERDTreeToggle<CR>
+map <leader>on :NERDTreeToggle<CR>
 " save file with double escape
 map <Esc><Esc> :w<CR>
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
 
 let g:rustfmt_autosave = 1
 
@@ -155,6 +164,13 @@ set sidescrolloff=3
 " lightline
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
       \ }
 " tmuxline
 let g:tmuxline_powerline_separators = 0
@@ -172,13 +188,14 @@ syntax enable
 filetype plugin indent on
 "set virtualedit=all
 set encoding=utf-8
+set wildmenu " enhanced command line completion
 set autoindent
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set autochdir
 set laststatus=2
-" set splitbelow splitright
+set splitbelow splitright
 set hlsearch
 set autoindent
 set nowrap
@@ -211,6 +228,12 @@ let g:gruvbox_contrast_dark='hard'
 set background=dark
 hi! Normal ctermbg=NONE guibg=NONE
 hi! Normal ctermbg=NONE
+
+" automatically reload vim on save
+augroup myvimrc
+    au!
+    au BufWritePost init.vim so $MYVIMRC
+augroup END
 
 "setlocal spell
 set spelllang=de,en_us

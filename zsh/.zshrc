@@ -1,5 +1,5 @@
 # zsh shell config @hoangolo
-export ZSH="/Users/supremesnickers/.oh-my-zsh"
+export ZSH="~/.oh-my-zsh"
 
 # plugins=(colorize zsh-256color zsh-autosuggestions)
 # color the username and stuff
@@ -38,16 +38,12 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
-#figlet -f smslant hello there | lolcat -t -F 0.2
-#fortune | cowsay -W 80 -s -f eyes || fortune | cowsay -W 80 -s
-export PATH=/usr/lib/ccache/bin/:$PATH:$HOME/scripts:$HOME/.emacs.d/bin
-export PATH="$HOME/.node/bin:$HOME/.cargo/bin:$PATH:$HOME/cs/golang/bin"
+export PATH="/usr/local/bin:$HOME/.node/bin:$HOME/.cargo/bin:$PATH:$HOME/scripts"
 export NODE_PATH="$HOME/.node/lib/node_modules:$NODE_PATH"
-export GOPATH="$HOME/cs/golang"
 export PATH="${PATH}:${HOME}/.local/bin/"
 
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # syntax highlighting, should be last
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+launchctl setenv PATH $PATH
 eval "$(starship init zsh)"
