@@ -1,4 +1,5 @@
 "      __                            __
+
 "
 "     / /  ___  ___ ____  ___ ____  / /__
 "    / _ \/ _ \/ _ `/ _ \/ _ `/ _ \/ / _ \
@@ -6,83 +7,8 @@
 "                       /___/
 "
 "
-" VIM Plug
-" install using :PlugInstall
-call plug#begin('~/.vim/plugged')
-    " Theme
-    Plug 'morhetz/gruvbox' " Current theme
-    Plug 'kaicataldo/material.vim', { 'branch': 'main' }
-
-    " Utilities
-    Plug 'tpope/vim-surround'
-    Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-unimpaired'
-    Plug 'mhinz/vim-startify'
-    " Plug 'edkolev/tmuxline.vim'
-    Plug 'benmills/vimux'
-
-    " status line
-    Plug 'itchyny/lightline.vim'
-
-    " {{{
-    Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'ryanoasis/vim-devicons'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-    let g:WebDevIconsOS = 'Darwin'
-    let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-    let g:DevIconsEnableFoldersOpenClose = 1
-    let g:DevIconsEnableFolderExtensionPatternMatching = 1
-    let NERDTreeDirArrowExpandable = "\u00a0" " make arrows invisible
-    let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
-    let NERDTreeNodeDelimiter = "\u263a" " smiley face
-
-    augroup nerdtree
-        autocmd!
-        autocmd FileType nerdtree setlocal nolist " turn off whitespace characters
-        autocmd FileType nerdtree setlocal nocursorline " turn off line highlighting for performance
-    augroup END
-
-    let NERDTreeShowHidden=1
-    " let NERDTreeDirArrowExpandable = '?'
-    " let NERDTreeDirArrowCollapsible = '?'
-    let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "?",
-    \ "Staged"    : "?",
-    \ "Untracked" : "?",
-    \ "Renamed"   : "?",
-    \ "Unmerged"  : "?",
-    \ "Deleted"   : "?",
-    \ "Dirty"     : "?",
-    \ "Clean"     : "??",
-    \ 'Ignored'   : '?',
-    \ "Unknown"   : "?"
-    \ }
-
-    " Nerdtree
-    function! IsNERDTreeOpen()
-      return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-    endfunction
-
-    let g:NERDTreeDirArrowExpandable = '▸'
-    let g:NERDTreeDirArrowCollapsible = '▾'
-    let g:NERDTreeWinSize=35
-
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'jiangmiao/auto-pairs'
-    Plug 'norcalli/nvim-colorizer.lua'
-
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
-
-    Plug 'scrooloose/syntastic'
-    Plug 'rust-lang/rust.vim'
-    Plug 'tpope/vim-commentary'
-    Plug 'sheerun/vim-polyglot'
-
-call plug#end()
-
+" LUA
+lua require('init')
 " compiling rust code with hotkey
 function! TermWrapper(command) abort
     if !exists('g:split_term_style') | let g:split_term_style = 'vertical' | endif
@@ -107,7 +33,7 @@ autocmd FileType rust nnoremap <F6> :CompileAndRun<CR>
 " KEY MAPPING
 let mapleader=" "
 
-nmap <leader>e :Explore<CR>
+nmap <leader>oe :Explore<CR>
 
 nmap <leader>. <c-^>
 
@@ -184,6 +110,11 @@ let g:material_theme_style = 'darker'
 " tmuxline
 let g:tmuxline_powerline_separators = 0
 let g:tmuxline_theme = 'lightline'
+
+" change default netrw style to tree
+let g:netrw_liststyle = 3
+" disable banner
+let g:netrw_banner = 0
 
 " strip trailing whitespace with F5
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
