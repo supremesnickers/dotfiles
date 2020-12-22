@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/Users/supremesnickers/dotfiles/bat/.config/bat'
+let g:netrw_dirhist_3='/Users/supremesnickers/dotfiles/bat/.config'
+let g:netrw_dirhist_2='/Users/supremesnickers/dotfiles/bat'
 let g:netrw_dirhist_1='/Volumes/Secondary/backups/backup_images/22.08/docs/schule/ethik/utilitarismus'
 let g:netrw_dirhist_0='/Volumes/Secondary/backups/backup_images/22.08/docs/schule/ethik'
 let g:netrw_dirhist_9='/Volumes/Secondary/backups/backup_images/22.08/docs/schule'
@@ -7,6 +10,3 @@ let g:netrw_dirhist_8='/Volumes/Secondary/backups/backup_images/22.08/docs/schul
 let g:netrw_dirhist_7='/Volumes/Secondary/backups/backup_images/22.08/docs/schule'
 let g:netrw_dirhist_6='/Volumes/Secondary/backups/backup_images/22.08/docs/schule/ethik'
 let g:netrw_dirhist_5='/Volumes/Secondary/backups/backup_images/22.08/docs/schule/mathe'
-let g:netrw_dirhist_4='/Volumes/Secondary/backups/backup_images/22.08/docs/schule/chemie'
-let g:netrw_dirhist_3='/Volumes/Secondary/backups/backup_images/22.08/docs/schule'
-let g:netrw_dirhist_2='/Volumes/Secondary/backups/backup_images/22.08/docs/schule/deutsch'

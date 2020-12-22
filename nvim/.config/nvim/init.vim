@@ -1,4 +1,5 @@
 "      __                            __
+"
 "     / /  ___  ___ ____  ___ ____  / /__
 "    / _ \/ _ \/ _ `/ _ \/ _ `/ _ \/ / _ \
 "   /_//_/\___/\_,_/_//_/\_, /\___/_/\___/
@@ -10,12 +11,15 @@
 call plug#begin('~/.vim/plugged')
     " Theme
     Plug 'morhetz/gruvbox' " Current theme
+    Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+
     " Utilities
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-unimpaired'
     Plug 'mhinz/vim-startify'
     " Plug 'edkolev/tmuxline.vim'
+    Plug 'benmills/vimux'
 
     " status line
     Plug 'itchyny/lightline.vim'
@@ -100,7 +104,7 @@ endfunction
 command! -nargs=0 CompileAndRun call TermWrapper(printf('rustc %s -o out && ./%s', expand('%'), expand('%:r')))
 autocmd FileType rust nnoremap <F6> :CompileAndRun<CR>
 
-" KEY MAPPINGS
+" KEY MAPPING
 let mapleader=" "
 
 nmap <leader>e :Explore<CR>
@@ -163,15 +167,20 @@ set sidescrolloff=3
 
 " lightline
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'material_vim',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified'] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
+      \   'gitbranch': 'FugitiveHead',
+      \   'cocstatus': 'coc#status'
       \ },
       \ }
+
+let g:material_terminal_italics = 1
+let g:material_theme_style = 'darker'
+
 " tmuxline
 let g:tmuxline_powerline_separators = 0
 let g:tmuxline_theme = 'lightline'
@@ -219,8 +228,19 @@ set cursorline
 set clipboard=unnamedplus
 " Theming
 set guifont=JetBrainsMonoMedium\ Nerd\ Font\ Mono\ 11
-set termguicolors
-colorscheme gruvbox
+
+if (has('nvim'))
+  let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+endif
+
+" For Neovim > 0.1.5 and Vim > patch 7.4.1799 - https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162
+" Based on Vim patch 7.4.1770 (`guicolors` option) - https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd
+" https://github.com/neovim/neovim/wiki/Following-HEAD#20160511
+if (has('termguicolors'))
+  set termguicolors
+endif
+
+colorscheme material
 let base16colorspace=256
 let g:gruvbox_italic=1
 let g:gruvbox_contrast_dark='hard'
@@ -289,7 +309,7 @@ let g:startify_custom_header = [
     \'                                               ',
     \'  ==============================================',
     \]
-"highlight StartifyHeader ctermfg=160
+highlight StartifyHeader ctermfg=150
 
 let g:startify_custom_footer = [
     \'   ____   _                                         _        ',
@@ -302,6 +322,7 @@ let g:startify_custom_footer = [
 
 let g:startify_lists = [
         \ { 'type': 'files',     'header': ['   MRU']},
+        \ { 'type': 'sessions',  'header': ['   Sessions']       },
         \]
 
 " ------------ COC NVIM --------------
