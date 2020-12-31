@@ -16,8 +16,8 @@ return require('packer').startup(
     function()
 
         use {'wbthomason/packer.nvim', opt = true}
-        use {"npxbr/gruvbox.nvim", requires = {"tjdevries/colorbuddy.vim"}}
-        use {"kaicataldo/material.vim"}
+        -- use {'npxbr/gruvbox.nvim', requires = {'tjdevries/colorbuddy.vim'}}
+        use {'kaicataldo/material.vim'}
         use {'kaicataldo/material.vim', branch= 'main'}
 
         -- Utilities
@@ -51,5 +51,7 @@ return require('packer').startup(
         use 'rust-lang/rust.vim'
         use 'sheerun/vim-polyglot'
         use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+        use 'neovim/nvim-lspconfig'
+
 end
 )

@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: gegeben-gesucht
+# --
+Gegeben:
+$1
+Gesucht:
+$2
+Rechung:
+$3
+Antwort:
+$0

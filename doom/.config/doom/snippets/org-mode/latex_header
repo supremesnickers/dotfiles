@@ -1,0 +1,32 @@
+# -*- mode: snippet -*-
+# name: latex_header
+# --
+
+# document setup
+#+OPTIONS: toc:nil        (no default TOC at all)
+#+OPTIONS: title:nil        (no default title)
+#+OPTIONS: spread:t
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [a4paper,11pt,twoside]
+#+LATEX_HEADER: \usepackage[margin=2cm]{geometry}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage[ngerman]{babel} % this is needed for umlauts
+#+LATEX_HEADER: \usepackage[T1]{fontenc}    % this is needed for correct output of umlauts in pdf
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage{setspace}
+#+LATEX_HEADER: \usepackage{charter}
+#+LATEX_HEADER: \usepackage{euler}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: \usepackage{longtable}
+
+#+LATEX_HEADER: \author{Sam Frenk, Robin Kany, David Schommers, Hoang Seidel}
+#+LATEX_HEADER: \pagestyle{fancy}
+#+LATEX_HEADER: \setlength{\headheight}{15.2pt}
+#+LATEX_HEADER: \fancyhead{}
+#+LATEX_HEADER: \fancyfoot{}
+#+LATEX_HEADER: \fancyhead[L]{\textit{Samuel Frenk, Robin Kany, David Schommers, Hoang Seidel}}
+#+LATEX_HEADER: \fancyhead[R]{\textit{12 D7 / Frau Klewitz}}
+#+LATEX_HEADER: \addtolength{\topmargin}{0.5cm}
+#+LATEX_HEADER: \renewcommand{\figurename}{Fig.}

@@ -1,0 +1,250 @@
+# root :elfeed:
+# blogs :blog:
+# Coding :coding:
+http://nullprogram.com/feed/ "coding"
+http://planet.emacsen.org/atom.xml "coding"
+https://blog.vivekhaldar.com/rss "coding"
+https://hardselius.github.io/feed.xml "coding"
+https://joshrollinswrites.com/index.xml "coding"
+https://protesilaos.com/codelog.xml "coding"
+http://fossegr.im/feed.xml "coding"
+https://hnrss.org/frontpage "coding"
+https://andreyorst.gitlab.io/feed.xml "coding"
+https://planet.emacslife.com/atom.xml "coding"
+https://eyenx.ch/feed.xml "coding"
+https://blog.burntsushi.net/index.xml "coding"
+http://xenodium.com/rss "coding"
+https://benhoyt.com/writings/rss.xml "coding"
+https://research.swtch.com/feed.atom "coding"
+
+https://webgefrickel.de/blog/feed "coding"
+https://this-week-in-rust.org/rss.xml "coding"
+http://pragmaticemacs.com/feed/ "coding"
+
+# News :news:
+# Top news :tops:
+http://feeds.bbci.co.uk/news/rss.xml "news"
+http://rss.cnn.com/rss/edition.rss "news"
+https://www.faz.net/rss/aktuell/ "news"
+https://news.google.com/news/rss "news"
+# Tech news :tech:
+https://news.google.com/news/rss/headlines/section/topic/TECHNOLOGY "tech"
+https://data.xda-developers.com/portal-feed "tech"
+
+# Reddit :reddit:
+# Linux :linux:
+https://www.reddit.com/r/unixporn.rss "reddit"
+https://www.reddit.com/r/archlinux.rss "reddit"
+https://www.reddit.com/r/linux.rss "reddit"
+ "reddit"
+https://www.reddit.com/r/emacs.rss "reddit"
+https://www.reddit.com/r/mechanicalkeyboards.rss "reddit"
+https://www.reddit.com/r/worldnews/.rss "reddit"
+
+# Youtube :youtube:
+# Coding :coding:
+https://www.youtube.com/feeds/videos.xml?channel_id=UClcE-kVhqyiHCcjYwcpfj9w "coding" # LiveOverflow
+https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA "coding" # Fireship
+https://www.youtube.com/feeds/videos.xml?channel_id=UC8butISFwT-Wl7EV0hUK0BQ "coding" # freeCodeCamp.org
+https://www.youtube.com/feeds/videos.xml?channel_id=UCj00KMrSJjHRL2F75ERgHXA "coding" # Rustic Games
+https://www.youtube.com/feeds/videos.xml?channel_id=UCrv269YwJzuZL3dH5PCgxUw "coding" # CodeParade
+https://www.youtube.com/feeds/videos.xml?channel_id=UCxX9wt5FWQUAAz4UrysqK9A "coding" # CS Dojo
+https://www.youtube.com/feeds/videos.xml?channel_id=UCvjgXvBlbQiydffZU7m1_aw "coding" # The Coding Train
+https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg "coding" # DistroTube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCFbNIlppjAuEX4znoulh0Cw "coding" # Web Dev Simplified
+https://www.youtube.com/feeds/videos.xml?channel_id=UC_fFL5jgoCOrwAVoM_fBYwA "coding" # Alex Lee
+https://www.youtube.com/feeds/videos.xml?channel_id=UCQ-W1KE9EYfdxhL6S4twUNw "coding" # The Cherno
+https://www.youtube.com/feeds/videos.xml?channel_id=UCsnGwSIHyoYN0kiINAGUKxg "coding" # Wolfgang's Channel
+https://www.youtube.com/feeds/videos.xml?channel_id=UCswWBF6ZkGnLG3sLRR65xRw "coding" # Algorithmen verstehen
+https://www.youtube.com/feeds/videos.xml?channel_id=UCQHsMwcGoH1ygyi-pJs5Z8A "coding" # Frame of Essence
+https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "coding" # Luke Smith
+https://www.youtube.com/feeds/videos.xml?channel_id=UC4JX40jDee_tINbkjycV4Sg "coding" # Tech With Tim
+https://www.youtube.com/feeds/videos.xml?channel_id=UCDrekHmOnkptxq3gUU0IyfA "coding" # Devon Crawford
+https://www.youtube.com/feeds/videos.xml?channel_id=UC29ju8bIPH5as8OGnQzwJyA "coding" # Traversy Media
+https://www.youtube.com/feeds/videos.xml?channel_id=UCWr0mx597DnSGLFk1WfvSkQ "coding" # Kalle Hallden
+https://www.youtube.com/feeds/videos.xml?channel_id=UClb90NQQcskPUGDIXsQEz5Q "coding" # Dev Ed
+https://www.youtube.com/feeds/videos.xml?channel_id=UC-8QAzbLcRglXeN_MY9blyw "coding" # Ben Awad
+https://www.youtube.com/feeds/videos.xml?channel_id=UC0uTPqBCFIpZxlz_Lv1tk_g "coding" # Protesilaos Stavrou
+
+# Music :music:
+https://www.youtube.com/feeds/videos.xml?channel_id=UCSiPjfAJBgbFlIUsxOWpK0w "music" # PomplamooseMusic
+https://www.youtube.com/feeds/videos.xml?channel_id=UCu1yiKjTRetsoZ-OSeOMmzg "music" # JAZZ TUTORIAL
+https://www.youtube.com/feeds/videos.xml?channel_id=UCZtCKpPCTyd-mEtL4gAsQCw "music" # JazzLars
+https://www.youtube.com/feeds/videos.xml?channel_id=UCMiRRM8Mo7mmxemIs0OHEZA "music" # TheKinjaz
+https://www.youtube.com/feeds/videos.xml?channel_id=UCMxL6Te3DLWyvaa5dyu3o0g "music" # Clark On Stage
+https://www.youtube.com/feeds/videos.xml?channel_id=UC_Oa7Ph3v94om5OyxY1nPKg "music" # Paul Davids
+https://www.youtube.com/feeds/videos.xml?channel_id=UCSmwOCqzjnQksFn0t7ARkkw "music" # Jacob Koller / The Mad Arranger
+https://www.youtube.com/feeds/videos.xml?channel_id=UCgFvT6pUq9HLOvKBYERzXSQ "music" # Davie504
+https://www.youtube.com/feeds/videos.xml?channel_id=UCdcemy56JtVTrsFIOoqvV8g "music" # ANDREW HUANG
+https://www.youtube.com/feeds/videos.xml?channel_id=UC-2JUs_G21BrJ0efehwGkUw "music" # Scary Pockets
+https://www.youtube.com/feeds/videos.xml?channel_id=UC-4HMv1j00QTebcFg4mV2DQ "music" # Paul Barton
+https://www.youtube.com/feeds/videos.xml?channel_id=UC8R8FRt1KcPiR-rtAflXmeg "music" # Nahre Sol
+https://www.youtube.com/feeds/videos.xml?channel_id=UCj1Jtb8xLUzFAm8J-Q1e1MQ "music" # samuraiguitarist
+https://www.youtube.com/feeds/videos.xml?channel_id=UChnxLLvzviaR5NeKOevB8iQ "music" # Red Means Recording
+https://www.youtube.com/feeds/videos.xml?channel_id=UCnkp4xDOwqqJD7sSM3xdUiQ "music" # Adam Neely
+https://www.youtube.com/feeds/videos.xml?channel_id=UCuXblLcOc3KdJiLlMxiezCQ "music" # kazuki isogai
+https://www.youtube.com/feeds/videos.xml?channel_id=UCyDZai57BfE_N0SaBkKQyXg "music" # Rob Scallon
+https://www.youtube.com/feeds/videos.xml?channel_id=UC-ZaFVre7Koir_VcaM2LpNA "music" # MihranTV
+https://www.youtube.com/feeds/videos.xml?channel_id=UCwJvm8DVd9W5MIo6qaItMqQ "music" # Frei Klavier Spielen
+https://www.youtube.com/feeds/videos.xml?channel_id=UC3Wj9aO8VS5ZuXrtWfJf81w "music" # Josh Turner Guitar
+https://www.youtube.com/feeds/videos.xml?channel_id=UCuVDigtKhrCVwNDc76KnPUA "music" # Rabea Massaad
+https://www.youtube.com/feeds/videos.xml?channel_id=UC5jkXpfnBhlDjqh0ir5FsIQ "music" # Rudy Mancuso
+https://www.youtube.com/feeds/videos.xml?channel_id=UCH800GWn70b4mgFAmZ_jB8g "music" # Minh Dao
+https://www.youtube.com/feeds/videos.xml?channel_id=UC-oSaKCCEffJph0F7m6_xfA "music" # intheblues
+
+# Tech :tech:
+# Photography :photo:
+https://www.youtube.com/feeds/videos.xml?channel_id=UC09qASY4ixFS-KXIH6Nw0rg "tech" "photo" # Gerald Undone
+https://www.youtube.com/feeds/videos.xml?channel_id=UCUbAIlQq6qdOCW7nURh9Qog "tech" "photo" # The Slanted Lens
+
+https://www.youtube.com/feeds/videos.xml?channel_id=UCj34AOIMl_k1fF7hcBkD_dw "tech" # EverythingApplePro
+https://www.youtube.com/feeds/videos.xml?channel_id=UCFfCqe7b9YiDk2ZiAG8UIGA "tech" # Flossy Carter
+https://www.youtube.com/feeds/videos.xml?channel_id=UCdBK94H6oZT2Q7l0-b0xmMg "tech" # ShortCircuit
+https://www.youtube.com/feeds/videos.xml?channel_id=UCTzLRZUgelatKZ4nyIKcAbg "tech" # Hardware Canucks
+https://www.youtube.com/feeds/videos.xml?channel_id=UCBJycsmduvYEL83R_U4JriQ "tech" # Marques Brownlee
+https://www.youtube.com/feeds/videos.xml?channel_id=UCBa659QWEk1AI4Tg--mrJ2A "tech" # Tom Scott
+https://www.youtube.com/feeds/videos.xml?channel_id=UCO2x-p9gg9TLKneXlibGR7w "tech" # Snazzy Labs
+https://www.youtube.com/feeds/videos.xml?channel_id=UCSOpcUkE-is7u7c4AkLgqTw "tech" # MrMobile [Michael Fisher]
+https://www.youtube.com/feeds/videos.xml?channel_id=UCDlQwv99CovKafGvxyaiNDA "tech" # Jonathan Morrison
+https://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tunw "tech" # Linus Tech Tips
+https://www.youtube.com/feeds/videos.xml?channel_id=UCWFKCr40YwOZQx8FHU_ZqqQ "tech" # JerryRigEverything
+https://www.youtube.com/feeds/videos.xml?channel_id=UCVYamHliCI9rw1tHR1xbkfw "tech" # Dave Lee
+https://www.youtube.com/feeds/videos.xml?channel_id=UC0vBXGSyV14uvJ4hECDOl0Q "tech" # Techquickie
+https://www.youtube.com/feeds/videos.xml?channel_id=UCRYOj4DmyxhBVrdvbsUwmAA "tech" # Optimum Tech
+https://www.youtube.com/feeds/videos.xml?channel_id=UCeeFfhMcJa1kjtfZAGskOCA "tech" # TechLinked
+https://www.youtube.com/feeds/videos.xml?channel_id=UCiQMYozSSTkJ2twtZM1bG9w "tech" # zollotech
+https://www.youtube.com/feeds/videos.xml?channel_id=UCy0tKL1T7wFoYcxCe0xjN6Q "tech" # Technology Connections
+https://www.youtube.com/feeds/videos.xml?channel_id=UC9-y-6csu5WGm29I7JiwpnA "tech" # Computerphile
+https://www.youtube.com/feeds/videos.xml?channel_id=UCmY3dSr-0TOkJqy0btd2AJg "tech" # DetroitBORG
+https://www.youtube.com/feeds/videos.xml?channel_id=UC5UAwBUum7CPN5buc-_N1Fw "tech" # The Linux Experiment
+https://www.youtube.com/feeds/videos.xml?channel_id=UCABwqCK6XMowQDwlIz00UFw "tech" # Brandon Havard
+
+# Fitness :fitness:
+https://www.youtube.com/feeds/videos.xml?channel_id=UCEtMRF1ywKMc4sf3EXYyDzw "fitness" # ScottHermanFitness
+https://www.youtube.com/feeds/videos.xml?channel_id=UCe0TLA0EsQbE-MjuHXevj2A "fitness" # ATHLEAN-X™
+https://www.youtube.com/feeds/videos.xml?channel_id=UCqjwF8rxRsotnojGl4gM0Zw "fitness" # CHRIS HERIA
+
+# Fashion :fashion:
+https://www.youtube.com/feeds/videos.xml?channel_id=UClqxWoHXKDX4PJtoZ8p_oLQ "fashion" # Hueguh
+https://www.youtube.com/feeds/videos.xml?channel_id=UCyL0RJe41itDFjd70KKZIZQ "fashion" # Frugal Aesthetic
+https://www.youtube.com/feeds/videos.xml?channel_id=UCfJrdVVcWZMHLC--a4ovLLQ "fashion" # Tim Dessaint
+https://www.youtube.com/feeds/videos.xml?channel_id=UCoxWvJUqQWuWY6kkx1CBHZw "fashion" # One Dapper Street
+
+# Gaming :gaming:
+https://www.youtube.com/feeds/videos.xml?channel_id=UCNEmy4a6O2q0ZCz7Qi2MThA "gaming" # TF Blade
+https://www.youtube.com/feeds/videos.xml?channel_id=UCq2MR_xEM4QOjZl3X4QE9zw "gaming" # KayPea
+https://www.youtube.com/feeds/videos.xml?channel_id=UCtItUPwZnJZqu4gP-KP7iWg "gaming" # proborderlandsgamer
+https://www.youtube.com/feeds/videos.xml?channel_id=UCIe--ZnuoHAANQuN_iXTmww "gaming" # Timon Gaming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCv2qkByYQkcEbgzXUiPMSqA "gaming" # Tilterella
+https://www.youtube.com/feeds/videos.xml?channel_id=UCudNGAQXzpE1sMfoqPs67mQ "gaming" # Gosu
+https://www.youtube.com/feeds/videos.xml?channel_id=UCDxfRwPvQX4p-JGFfr2z_Cg "gaming" # Asian Sensation
+
+# Science and engineering :science:
+https://www.youtube.com/feeds/videos.xml?channel_id=UCworsKCR-Sx6R6-BnIjS2MA "science" # Clickspring
+https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg "science" # Two Minute Papers
+https://www.youtube.com/feeds/videos.xml?channel_id=UCEWpbFLzoYGPfuWUMFPSaoA "science" # The Organic Chemistry Tutor
+https://www.youtube.com/feeds/videos.xml?channel_id=UClqhvGmHcvWL9w3R48t9QXQ "science" # Engineering Explained
+https://www.youtube.com/feeds/videos.xml?channel_id=UCu6mSoMNzHQiBIOCkHUa2Aw "science" # Cody'sLab
+https://www.youtube.com/feeds/videos.xml?channel_id=UCS0N5baNlQWJCUrhCEo8WlA "science" # Ben Eater
+https://www.youtube.com/feeds/videos.xml?channel_id=UCHnyfMqiRRG1u-2MsSQLbXA "science" # Veritasium
+https://www.youtube.com/feeds/videos.xml?channel_id=UCIgKGGJkt1MrNmhq3vRibYA "science" # NurdRage
+https://www.youtube.com/feeds/videos.xml?channel_id=UCFhXFikryT4aFcLkLw2LBLA "science" # NileRed
+https://www.youtube.com/feeds/videos.xml?channel_id=UCqZQJ4600a9wIfMPbYc60OQ "science" # Learn Engineering
+https://www.youtube.com/feeds/videos.xml?channel_id=UCTH03chB4PrMBQf6iK7eDCg "science" # How a Car Works
+https://www.youtube.com/feeds/videos.xml?channel_id=UCivA7_KLKWo43tFcCkFvydw "science" # Applied Science
+https://www.youtube.com/feeds/videos.xml?channel_id=UCR1IuLEqb6UEA_zQ81kwXfg "science" # Real Engineering
+
+# misc :misc:
+https://www.youtube.com/feeds/videos.xml?channel_id=UC-ocBsC30pAnk5pxJXvnXLg "misc" # Humphrey Wittingtonsworth IV
+https://www.youtube.com/feeds/videos.xml?channel_id=UC0QHWhjbe5fGJEPz3sVb6nw "misc" # Doctor Mike
+https://www.youtube.com/feeds/videos.xml?channel_id=UC1DTYW241WD64ah5BFWn4JA "misc" # Sam O'Nella Academy
+https://www.youtube.com/feeds/videos.xml?channel_id=UC1ELUfyiYnQQhtPWBS9Dmbg "misc" # David Zhang
+https://www.youtube.com/feeds/videos.xml?channel_id=UC1KbedtKa3d5dleFR6OjQMg "misc" # alpha m.
+https://www.youtube.com/feeds/videos.xml?channel_id=UC1PkRYud11ogYDqgdqd23Zw "misc" # Based Zeus
+https://www.youtube.com/feeds/videos.xml?channel_id=UC1lSkVg0HUiMxW3l-WRICGw "misc" # Pietro Boselli
+https://www.youtube.com/feeds/videos.xml?channel_id=UC2C_jShtL725hvbm1arSV9w "misc" # CGP Grey
+https://www.youtube.com/feeds/videos.xml?channel_id=UC3ICcukYYeSn26KlCRnhOhA "misc" # Jo Nakashima - Origami Tutorials
+https://www.youtube.com/feeds/videos.xml?channel_id=UC4Nbftg7EcCJ13GDEDjm-cA "misc" # Clashing Matty
+https://www.youtube.com/feeds/videos.xml?channel_id=UC5P2FOtx3XtSedQpW_NVhFQ "misc" # Straight Edge
+https://www.youtube.com/feeds/videos.xml?channel_id=UC6107grRI4m0o2-emgoDnAA "misc" # SmarterEveryDay
+https://www.youtube.com/feeds/videos.xml?channel_id=UC6Iaz96RkYE-MOjnq5NPgqw "misc" # FarFromAverage
+https://www.youtube.com/feeds/videos.xml?channel_id=UC6nSFpj9HTCZ5t-N3Rm3-HA "misc" # Vsauce
+https://www.youtube.com/feeds/videos.xml?channel_id=UC6x7GwJxuoABSosgVXDYtTw "misc" # I Like To Make Stuff
+https://www.youtube.com/feeds/videos.xml?channel_id=UC7YOGHUfC1Tb6E4pudI9STA "misc" # Mental Outlaw
+https://www.youtube.com/feeds/videos.xml?channel_id=UC9B2D-VzslJ_OTUXA8-V_dQ "misc" # Yohan Kim
+https://www.youtube.com/feeds/videos.xml?channel_id=UC9_p50tH3WmMslWRWKnM7dQ "misc" # Adam Ragusea
+https://www.youtube.com/feeds/videos.xml?channel_id=UC9d1Mz9bzCE-t_t0lPnrjPA "misc" # BenDeen
+https://www.youtube.com/feeds/videos.xml?channel_id=UCAL3JXZSzSm8AlZyD3nQdBA "misc" # Primitive Technology
+https://www.youtube.com/feeds/videos.xml?channel_id=UCANrYDf_rhQw16jo5ImerlQ "misc" # Sam Johnson
+https://www.youtube.com/feeds/videos.xml?channel_id=UCBe8cEd__AoJESVSUnB2YIA "misc" # Jake DunRite
+https://www.youtube.com/feeds/videos.xml?channel_id=UCC03-Rich_1-C5sJ2QQAhWA "misc" # Jimmy Zhang
+https://www.youtube.com/feeds/videos.xml?channel_id=UCCUw_xsps3VgtqLYR8vBSXw "misc" # Edward Sa
+https://www.youtube.com/feeds/videos.xml?channel_id=UCD0y51PJfvkZNe3y3FR5riw "misc" # Chyrosran22
+https://www.youtube.com/feeds/videos.xml?channel_id=UCEIwxahdLz7bap-VDs9h35A "misc" # Steve Mould
+https://www.youtube.com/feeds/videos.xml?channel_id=UCERm5yFZ1SptUEU4wZ2vJvw "misc" # Jeremy Ethier
+https://www.youtube.com/feeds/videos.xml?channel_id=UCIgQksZ_4IvQ_VAqBWW81bg "misc" # Max Yuryev
+https://www.youtube.com/feeds/videos.xml?channel_id=UCJ24N4O0bP7LGLBDvye7oCA "misc" # Matt D'Avella
+https://www.youtube.com/feeds/videos.xml?channel_id=UCJFMWWscsO-msPiLj42eXiQ "misc" # Apalapse
+https://www.youtube.com/feeds/videos.xml?channel_id=UCJHA_jMfCvEnv-3kRjTCQXw "misc" # Binging with Babish
+https://www.youtube.com/feeds/videos.xml?channel_id=UCJjSDX-jUChzOEyok9XYRJQ "misc" # Jubilee
+https://www.youtube.com/feeds/videos.xml?channel_id=UCKOvOaJv4GK-oDqx-sj7VVg "misc" # Chubbyemu
+https://www.youtube.com/feeds/videos.xml?channel_id=UCL5YbN5WLFD8dLIegT5QAbA "misc" # agadmator's Chess Channel
+https://www.youtube.com/feeds/videos.xml?channel_id=UCL6JmiMXKoXS6bpP1D3bk8g "misc" # Donut Media
+https://www.youtube.com/feeds/videos.xml?channel_id=UCLXo7UDZvByw2ixzpQCufnA "misc" # Vox
+https://www.youtube.com/feeds/videos.xml?channel_id=UCLoWcRy-ZjA-Erh0p_VDLjQ "misc" # Y-Kollektiv
+https://www.youtube.com/feeds/videos.xml?channel_id=UCMHXMAeKkI6HXlPfLiYvo9g "misc" # Taeha Types
+https://www.youtube.com/feeds/videos.xml?channel_id=UCNOfK8sg1y55IhC5Sm3at-g "misc" # Quang & Paul
+https://www.youtube.com/feeds/videos.xml?channel_id=UCNaoWBPlqm9hmMN28LeSkOQ "misc" # Valspire Family
+https://www.youtube.com/feeds/videos.xml?channel_id=UCO5cuVeVi2WhSNFPL3szJ7A "misc" # Flavor Lab
+https://www.youtube.com/feeds/videos.xml?channel_id=UCPZUQqtVDmcjm4NY5FkzqLA "misc" # Rousseau
+https://www.youtube.com/feeds/videos.xml?channel_id=UCPtUzxTfdaxAmr4ie9bXZVA "misc" # Mathe by Daniel Jung
+https://www.youtube.com/feeds/videos.xml?channel_id=UCPvyOQD9hxY8433PN9QalIg "misc" # Moretoki
+https://www.youtube.com/feeds/videos.xml?channel_id=UCPzFLpOblZEaIx2lpym1l1A "misc" # Alex
+https://www.youtube.com/feeds/videos.xml?channel_id=UCQ7ASM-o1ELUbScXCKYwovA "misc" # Feliks Zemdegs
+https://www.youtube.com/feeds/videos.xml?channel_id=UCQK_BQkXBzo1Hj81N3onWKQ "misc" # John Simmons
+https://www.youtube.com/feeds/videos.xml?channel_id=UCRRr_xrOm66qaigIbwFLvbQ "misc" # Simon Clark
+https://www.youtube.com/feeds/videos.xml?channel_id=UCRlICXvO4XR4HMeEB9JjDlA "misc" # Thoughty2
+https://www.youtube.com/feeds/videos.xml?channel_id=UCRtFCGfOu7V9_U994fAWwCw "misc" # Clash With Ed
+https://www.youtube.com/feeds/videos.xml?channel_id=UCSAUGyc_xA8uYzaIVG6MESQ "misc" # nigahiga
+https://www.youtube.com/feeds/videos.xml?channel_id=UCSSzNB7vY4FHUqI8jqH37Eg "misc" # Kevin Shroff
+https://www.youtube.com/feeds/videos.xml?channel_id=UCTXeJ33DzXI2veQpKfrvaYw "misc" # Julien Bam
+https://www.youtube.com/feeds/videos.xml?channel_id=UCV5vCi3jPJdURZwAOO_FNfQ "misc" # The Thought Emporium
+https://www.youtube.com/feeds/videos.xml?channel_id=UCX6OQ3DkcsbYNE6H8uQQuVA "misc" # MrBeast
+https://www.youtube.com/feeds/videos.xml?channel_id=UCXlnUMmbfvVBmc5NqzlbFVw "misc" # Jack Denmo
+https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw "misc" # 3Blue1Brown
+https://www.youtube.com/feeds/videos.xml?channel_id=UCb-cM927p9tWkqmpOrBabOQ "misc" # Ultralativ
+https://www.youtube.com/feeds/videos.xml?channel_id=UCbiS-tMYNTIUv1y6uVh27Zw "misc" # Word Porn
+https://www.youtube.com/feeds/videos.xml?channel_id=UCc1Pn7FxieMohCZFPYEbs7w "misc" # Jake Wright
+https://www.youtube.com/feeds/videos.xml?channel_id=UCdiJdhmCB-KeokIGg_GAJRg "misc" # Mathemarius
+https://www.youtube.com/feeds/videos.xml?channel_id=UCeYUHG6o0YguM-g23htdsSw "misc" # GCFLearnFree.org
+https://www.youtube.com/feeds/videos.xml?channel_id=UCeiYXex_fwgYDonaTcSIk6w "misc" # MinuteEarth
+https://www.youtube.com/feeds/videos.xml?channel_id=UCes1EvRjcKU4sY_UEavndBw "misc" # ChrisFix
+https://www.youtube.com/feeds/videos.xml?channel_id=UCf29Sq6-XxLQG_XuJwMHaFg "misc" # Nando v Movies
+https://www.youtube.com/feeds/videos.xml?channel_id=UCfIqCzQJXvYj9ssCoHq327g "misc" # How To Make Everything
+https://www.youtube.com/feeds/videos.xml?channel_id=UCh4pyZUB0mNzieaKv831flA "misc" # Invisible People
+https://www.youtube.com/feeds/videos.xml?channel_id=UCiTfB-A55Vq2fB610vaWJVA "misc" # Justin Y.
+https://www.youtube.com/feeds/videos.xml?channel_id=UCim-I1gkkzXO3kUzXl0CS5A "misc" # Leo Cagape
+https://www.youtube.com/feeds/videos.xml?channel_id=UCk2sx_3FUkKvDGlIhdUQa8A "misc" # Billy Ellis
+https://www.youtube.com/feeds/videos.xml?channel_id=UCkHMP3J4OEqpqFVg8irZdPQ "misc" # PlenilunePictures
+https://www.youtube.com/feeds/videos.xml?channel_id=UCkOu814wigKaeu-b2hFdU6w "misc" # Pianta
+https://www.youtube.com/feeds/videos.xml?channel_id=UCknMR7NOY6ZKcVbyzOxQPhw "misc" # Kai W
+https://www.youtube.com/feeds/videos.xml?channel_id=UClfEht64_NrzHf8Y0slKEjw "misc" # AlternateHistoryHub
+https://www.youtube.com/feeds/videos.xml?channel_id=UCllGwtW6scxAjM28fIgEozg "misc" # TaeKeyboards
+https://www.youtube.com/feeds/videos.xml?channel_id=UCmh5gdwCx6lN7gEC20leNVA "misc" # David Dobrik
+https://www.youtube.com/feeds/videos.xml?channel_id=UCn0aqanDGBsocDl4B7QDqlg "misc" # Ruby Sparrow
+https://www.youtube.com/feeds/videos.xml?channel_id=UCoOae5nYA7VqaXzerajD0lg "misc" # Ali Abdaal
+https://www.youtube.com/feeds/videos.xml?channel_id=UCoxcjq-8xIDTYp3uz647V5A "misc" # Numberphile
+https://www.youtube.com/feeds/videos.xml?channel_id=UCpExuV8qJMfCaSQNL1YG6bQ "misc" # Better Than Yesterday
+https://www.youtube.com/feeds/videos.xml?channel_id=UCpJmBQ8iNHXeQ7jQWDyGe3A "misc" # Life Noggin
+https://www.youtube.com/feeds/videos.xml?channel_id=UCqTVfT9JQqhA6_Hi_h_h97Q "misc" # J Perm
+https://www.youtube.com/feeds/videos.xml?channel_id=UCqgHuiDr4kRvK2QRGFi260A "misc" # the minorities
+https://www.youtube.com/feeds/videos.xml?channel_id=UCrqAGUPPMOdo0jfQ6grikZw "misc" # Colt Steele
+https://www.youtube.com/feeds/videos.xml?channel_id=UCsXVk37bltHxD1rDPwtNM8Q "misc" # Kurzgesagt – In a Nutshell
+https://www.youtube.com/feeds/videos.xml?channel_id=UCtAIs1VCQrymlAnw3mGonhw "misc" # Flammable Maths
+https://www.youtube.com/feeds/videos.xml?channel_id=UCtUbO6rBht0daVIOGML3c8w "misc" # Summoning Salt
+https://www.youtube.com/feeds/videos.xml?channel_id=UCuqkPUgyqVgFQ672p4jYbBA "misc" # DominicDeAngelis
+https://www.youtube.com/feeds/videos.xml?channel_id=UCutXfzLC5wrV3SInT_tdY0w "misc" # Wong Fu Productions
+https://www.youtube.com/feeds/videos.xml?channel_id=UCvZe6ZCbF9xgbbbdkiodPKQ "misc" # Baumgartner Restoration
+https://www.youtube.com/feeds/videos.xml?channel_id=UCvusxEHa4KxVCusGeAK8n0g "misc" # 123Toid
+https://www.youtube.com/feeds/videos.xml?channel_id=UCwQO08xnzEgXoZ6zZJpvqsw "misc" # JTTR
+https://www.youtube.com/feeds/videos.xml?channel_id=UCwRXb5dUK4cvsHbx-rGzSgw "misc" # Derek Banas

@@ -8,7 +8,7 @@
 # present menu for user to choose which workspace to open
 PS3="Please choose your session: "
 # shellcheck disable=SC2207
-IFS=$'\n' && options=($(tmux list-sessions -F "#S" 2>/dev/null) "New Session" "zsh")
+IFS=$'\n' && options=($(tmux list-sessions -F "#S" 2>/dev/null) "New Session" "New dev session" "zsh")
 echo "Available sessions"
 echo "------------------"
 echo " "
@@ -17,7 +17,11 @@ do
 	case $opt in
 		"New Session")
 			read -rp "Enter new session name: " SESSION_NAME
-			tmux new -s "$SESSION_NAME"
+			tmux new -s "$SESSION_NAME" -f ~/dotfiles/tmux/.config/tmux/new_ses.conf
+			break
+			;;
+		"New dev session")
+			~/scripts/newdevses
 			break
 			;;
 		"zsh")

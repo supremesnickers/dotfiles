@@ -1,0 +1,14 @@
+browser "open %u"
+
+bind-key n down
+bind-key e up
+bind-key G end
+bind-key g home
+bind-key y quit
+bind-key i open
+bind-key k next-unread
+bind-key K prev-unread
+bind-key s sort
+
+auto-reload yes
+reload-threads 100

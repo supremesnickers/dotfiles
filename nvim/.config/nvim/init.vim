@@ -9,6 +9,7 @@
 "
 " LUA
 lua require('init')
+lua require'lspconfig'.rust_analyzer.setup({})
 " compiling rust code with hotkey
 function! TermWrapper(command) abort
     if !exists('g:split_term_style') | let g:split_term_style = 'vertical' | endif
@@ -30,8 +31,18 @@ endfunction
 command! -nargs=0 CompileAndRun call TermWrapper(printf('rustc %s -o out && ./%s', expand('%'), expand('%:r')))
 autocmd FileType rust nnoremap <F6> :CompileAndRun<CR>
 
-" KEY MAPPING
+command! -nargs=? -complete=dir HFiles
+  \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
+  \   'source': 'fd --type f --hidden --follow --exclude .git --no-ignore . '.expand(<q-args>)
+  \ })))
+
+command! FASD call fzf#run(fzf#wrap({'source': 'fish -c "fasd -al"', 'options': '--no-sort --tac --tiebreak=index'}))
+nnoremap <silent> <Leader>fp :FASD<CR>
+
+" ------------key mapping-----------------
 let mapleader=" "
+
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 nmap <leader>oe :Explore<CR>
 
@@ -39,10 +50,12 @@ nmap <leader>. <c-^>
 
 " fzf
 nmap <leader>ff :Files<CR>
-command! -bang -nargs=? -complete=dir DotFiles call fzf#vim#files('~/dotfiles', <bang>0)
-nmap <leader>fc :Commands<CR>
+nmap <leader>: :Commands<CR>
 nmap <leader>fh :History<CR>
 nmap <leader>fb :Buffers<CR>
+nmap <leader>fd :HFiles<CR>
+nmap <leader>fr :Rg<CR>
+nmap <leader>fl :Lines<CR>
 
 " Remap keys for gotos COC
 nmap <silent> gd <Plug>(coc-definition)
@@ -75,6 +88,20 @@ map <leader>on :NERDTreeToggle<CR>
 " save file with double escape
 map <Esc><Esc> :w<CR>
 
+let g:tslime_always_current_session = 1
+let g:tslime_always_current_window = 1
+
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+nmap <C-c>r <Plug>SetTmuxVars
+
+let g:tslime_ensure_trailing_newlines = 1
+" let g:tslime_normal_mapping = '<localleader>t'
+" let g:tslime_visual_mapping = '<localleader>t'
+" let g:tslime_vars_mapping = '<localleader>T'
+
+let g:rainbow_active = 1 
+
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
@@ -90,32 +117,6 @@ let g:rustfmt_autosave = 1
 " show lines above and below the cursor when scrolling
 set scrolloff=4
 set sidescrolloff=3
-
-" lightline
-let g:lightline = {
-      \ 'colorscheme': 'material_vim',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified'] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead',
-      \   'cocstatus': 'coc#status'
-      \ },
-      \ }
-
-let g:material_terminal_italics = 1
-let g:material_theme_style = 'darker'
-
-" tmuxline
-let g:tmuxline_powerline_separators = 0
-let g:tmuxline_theme = 'lightline'
-
-" change default netrw style to tree
-let g:netrw_liststyle = 3
-" disable banner
-let g:netrw_banner = 0
-
 " strip trailing whitespace with F5
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
@@ -126,6 +127,7 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 " syntax
 syntax enable
 filetype plugin indent on
+
 "set virtualedit=all
 set encoding=utf-8
 set wildmenu " enhanced command line completion
@@ -148,7 +150,7 @@ set showcmd
 set number
 set undodir=~/.vim/undodir
 set undofile
-set showmatch
+" set showmatch
 set lazyredraw
 set incsearch
 set smartindent
@@ -157,34 +159,74 @@ set scrolloff=6
 set cmdheight=2
 set cursorline
 set clipboard=unnamedplus
-" Theming
+
+" -------------THEMING-----------------
 set guifont=JetBrainsMonoMedium\ Nerd\ Font\ Mono\ 11
 
 if (has('nvim'))
   let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 endif
 
-" For Neovim > 0.1.5 and Vim > patch 7.4.1799 - https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162
-" Based on Vim patch 7.4.1770 (`guicolors` option) - https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd
-" https://github.com/neovim/neovim/wiki/Following-HEAD#20160511
 if (has('termguicolors'))
   set termguicolors
 endif
 
 colorscheme material
 let base16colorspace=256
+
 let g:gruvbox_italic=1
 let g:gruvbox_contrast_dark='hard'
 "let g:gruvbox_improved_strings=1
+
 set background=dark
 hi! Normal ctermbg=NONE guibg=NONE
 hi! Normal ctermbg=NONE
 
-" automatically reload vim on save
-augroup myvimrc
-    au!
-    au BufWritePost init.vim so $MYVIMRC
-augroup END
+" lightline
+let g:lightline = {
+      \ 'colorscheme': 'material_vim',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified'] ],
+      \   'right': [[ 'lineinfo' ],
+      \             [ 'filetype' ]],
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead',
+      \   'cocstatus': 'coc#status'
+      \ },
+      \ }
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" material theme
+let g:material_terminal_italics = 1
+let g:material_theme_style = 'darker'
+
+" tmuxline
+let g:tmuxline_powerline_separators = 0
+let g:tmuxline_theme = 'lightline'
+
+" change default netrw style to tree
+let g:netrw_liststyle = 3
+" disable banner
+let g:netrw_banner = 0
+
+" ----------------------
+
+" " automatically reload vim on save
+" augroup myvimrc
+"     au!
+"     au BufWritePost init.vim so $MYVIMRC
+" augroup END
 
 "setlocal spell
 set spelllang=de,en_us

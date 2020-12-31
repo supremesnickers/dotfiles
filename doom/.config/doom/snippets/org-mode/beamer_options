@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: beamer_options
+# key: beamer
+# --
+
+# Beamer options
+#+OPTIONS: H:1 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [presentation]
+#+BEAMER_THEME: default
+#+BEAMER_FONT_THEME: default
+#+BEAMER_COLOR_THEME: dove
+#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
+#+STARTUP: beamer

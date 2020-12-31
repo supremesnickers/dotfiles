@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: org-drill-new-flashcard
+# key: fc
+# condition: t
+# --
+
+*** Front :drill:
+:PROPERTIES:
+:VISIBILITY: children
+:END:
+${1:Question}
+**** Back
+${0:Answer}
