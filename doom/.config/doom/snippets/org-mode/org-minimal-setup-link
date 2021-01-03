@@ -1,4 +1,4 @@
 # -*- mode: snippet -*-
 # name: org-minimal-setup-link
 # --
-#+SETUPFILE: /home/hoangolo/org/org-minimal-theme.setup
+#+SETUPFILE: ~/org/org-minimal-theme.setup

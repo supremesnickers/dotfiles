@@ -7,19 +7,17 @@ autoload -Uz compinit && compinit
 autoload -U colors && colors
 
 #PS1="%B%{$fg[red]%}[%{$fg[green]%}%n%{$fg[blue]%}@%{$fg[yellow]%}%M %{$fg[blue]%}%~%{$fg[red]%}]%{$fg[blue]%}$%b "
-# PS1="%B%{$fg[red]%}%~ %{$fg[yellow]%}YEET %b "
-# bindkey -v
-# source $ZSH/oh-my-zsh.sh
 
 # export LC_ALL="en_US.UTF-8"
 # export LANG="en_US.UTF-8"
-export EDITOR=nvim
+export EDITOR=emacs
 # Tab completion
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 _comp_options+=(globdots)		# Include hidden files.
 
 
+alias ee='emacsclient -n'
 alias weather='curl wttr.in'
 alias svim='sudo nvim'
 alias lx='exa'
@@ -50,3 +48,4 @@ eval "$(starship init zsh)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+[ -f "/Users/supremesnickers/.ghcup/env" ] && source "/Users/supremesnickers/.ghcup/env" # ghcup-env

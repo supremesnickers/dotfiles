@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+tmux has-session -t dev
+if [ $? != 0 ]; then
+    tmux new-session -s dev -n stat
+    tmux send-keys -t dev 'btm' C-m
+
+    tmux new-window -t dev -n ncspot
+    tmux send-keys -t dev:2 'ncspot' C-m
+
+    tmux new-window -t dev
+    tmux select-window -t dev:3
+fi
+tmux attach -t dev

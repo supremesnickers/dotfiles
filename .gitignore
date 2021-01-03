@@ -1,2 +1,4 @@
 tmux/.config/tmux
+.DS_STORE
 .netrwhist
+scripts/scripts/clangd
