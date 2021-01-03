@@ -203,4 +203,5 @@
 
        :config
        ;;
-       (default +bindings))
+       (default +bindings)
+       literate)
