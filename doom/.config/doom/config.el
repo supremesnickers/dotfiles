@@ -39,9 +39,9 @@
 ;;       doom-variable-pitch-font (font-spec :family "Avenir" :size 14 :weight 'regular)
 ;;       doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular))
 
-(setq doom-font (font-spec :family "JetBrainsMonoMedium Nerd Font Mono" :size 14 :weight 'medium)
-      doom-big-font (font-spec :family "JetBrainsMonoMedium Nerd Font Mono" :size 20 :weight 'medium)
-      doom-variable-pitch-font (font-spec :family "Avenir" :size 14 :weight 'regular)
+(setq doom-font (font-spec :family "JetBrainsMonoMedium Nerd Font Mono" :size 17 :weight 'medium)
+      doom-big-font (font-spec :family "JetBrainsMonoMedium Nerd Font Mono" :size 22 :weight 'medium)
+      doom-variable-pitch-font (font-spec :family "sans" :size 14 :weight 'regular)
       doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular))
 
 ;; (setq doom-font (font-spec :family "Iosevka Nerd Font" :size 15 :weight 'medium)
