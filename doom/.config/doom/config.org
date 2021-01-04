@@ -29,11 +29,11 @@ These credentials are usually included in places like =org-mode= exports and wri
 Various improvements to Emacs to numerous to explain in detail.
 #+begin_src emacs-lisp :tangle yes
 (setq-default
-    delete-by-moving-to-trash t                      ; Delete files to trash
-    tab-width 4                                      ; Set width for tabs
-    uniquify-buffer-name-style 'forward              ; Uniquify buffer names
-    window-combination-resize t                      ; take new window space from all other windows (not just current)
-    x-stretch-cursor t)                              ; Stretch cursor to the glyph width
+ delete-by-moving-to-trash t                      ; Delete files to trash
+ tab-width 4                                      ; Set width for tabs
+ uniquify-buffer-name-style 'forward              ; Uniquify buffer names
+ window-combination-resize t                      ; take new window space from all other windows (not just current)
+ x-stretch-cursor t)                              ; Stretch cursor to the glyph width
 
 (setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
       evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
@@ -42,11 +42,15 @@ Various improvements to Emacs to numerous to explain in detail.
       truncate-string-ellipsis "…")               ; Unicode ellispis are nicer than "...", and also save /precious/ space
 
 (delete-selection-mode 1)                         ; Replace selection when inserting text
-(unless (equal "Battery status not avalible"
-               (battery))
-  (display-battery-mode 1))                       ; On laptops it's nice to know how much power you have
-(global-subword-mode 1)                           ; Iterate through CamelCase words
 
+;; (if (equal "Power AC, battery N/A (N/A% load, remaining time N/A)"
+;;            (battery))
+;;     (display-battery-mode nil)
+;;   (display-battery-mode t))                       ; On laptops it's nice to know how much power you have
+
+(display-battery-mode nil)
+
+(global-subword-mode 1)                           ; Iterate through CamelCase words
 #+end_src
 
 *** Customize interface
@@ -66,9 +70,9 @@ I like the 'JetBrains Mono' font, especially in the terminal and everything else
 ;;       doom-variable-pitch-font (font-spec :family "Avenir" :size 14 :weight 'regular)
 ;;       doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular))
 
-(setq doom-font (font-spec :family "JetBrainsMonoMedium Nerd Font Mono" :size 17 :weight 'medium)
+(setq doom-font (font-spec :family "JetBrainsMonoMedium Nerd Font Mono" :size 14 :weight 'medium)
       doom-big-font (font-spec :family "JetBrainsMonoMedium Nerd Font Mono" :size 22 :weight 'medium)
-      doom-variable-pitch-font (font-spec :family "sans" :size 14 :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "Avenir" :size 14 :weight 'regular)
       doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular))
 
 ;; (setq doom-font (font-spec :family "Iosevka Nerd Font" :size 15 :weight 'medium)
@@ -781,7 +785,7 @@ Display emails in plain text instead of stupid html.
 
 * Package loading
 :PROPERTIES:
-:header-args:emacs-lisp: :tangle "packages.el" :comments link
+:header-args:emacs-lisp: :tangle "packages.el" :comments no
 :END:
 This file shouldn't be byte compiled.
 #+BEGIN_SRC emacs-lisp :tangle "packages.el" :comments no
@@ -792,14 +796,14 @@ This file shouldn't be byte compiled.
 ** General packages
 
 *** Prompting
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 ;; ;; disabled for now, because of issues after reloading config
 ;; (package! ivy-posframe)
 ;; (package! ivy-rich)
 #+end_src
 
 *** Theming
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (package! kaolin-themes)
 (package! rainbow-mode)
 ;; (package! pretty-mode)
@@ -812,7 +816,7 @@ Variable pitch fontification + colouring
 (package! info-colors :pin "47ee73cc19b1049eef32c9f3e264ea7ef2aaf8a5")
 #+END_SRC
 *** Org
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (package! doct)
 (package! org-drill)
 (package! org-fragtog)
@@ -820,17 +824,17 @@ Variable pitch fontification + colouring
 ;; (package! ox-reveal)
 #+end_src
 *** Snippets
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 ;; (package! doom-snippets :ignore t)
 (package! yasnippet-snippets)
 #+end_src
 *** Web
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (package! htmlize)
 (package! web-beautify)
 #+end_src
 *** Misc
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (package! lorem-ipsum)
 (package! auctex)
 (package! pdf-tools)

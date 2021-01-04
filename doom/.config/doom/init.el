@@ -26,7 +26,7 @@
        +icons
        +prescient
        ;; +childframe
-       ;; +fuzzy
+       +fuzzy
        )
 
        :ui
@@ -204,4 +204,5 @@
        :config
        ;;
        (default +bindings)
-       literate)
+       literate
+       )
