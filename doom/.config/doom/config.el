@@ -25,12 +25,10 @@
 
 (exec-path-from-shell-initialize)
 
-;; (if (equal "Power AC, battery N/A (N/A% load, remaining time N/A)"
-;;            (battery))
-;;     (display-battery-mode nil)
-;;   (display-battery-mode t))                       ; On laptops it's nice to know how much power you have
-
-(display-battery-mode nil)
+(if (equal "Power AC, battery N/A (N/A% load, remaining time N/A)"
+           (battery))
+    (setq display-battery-mode nil)
+  (setq display-battery-mode t))                       ; On laptops it's nice to know how much power you have
 
 (global-subword-mode 1)                           ; Iterate through CamelCase words
 ;; Simple settings:1 ends here
@@ -52,18 +50,25 @@
 ;;       doom-variable-pitch-font (font-spec :family "Avenir" :size 14 :weight 'regular)
 ;;       doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular))
 
-(setq doom-font (font-spec :family "Iosevka SS14" :size 15 :weight 'medium)
-      doom-big-font (font-spec :family "Iosevka SS14" :size 22 :weight 'medium)
-      doom-variable-pitch-font (font-spec :family "Avenir" :size 14 :weight 'regular)
-      doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular))
+(if IS-LINUX
+    (setq doom-font (font-spec :family "Iosevka SS14" :size 15 :weight 'medium)
+          doom-big-font (font-spec :family "Iosevka SS14" :size 22 :weight 'medium)
+          doom-variable-pitch-font (font-spec :family "Avenir" :size 14 :weight 'regular)
+          doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular))
+  (setq doom-font (font-spec :family "Iosevka SS14" :size 15 :weight 'medium)
+        doom-big-font (font-spec :family "Iosevka SS14" :size 22 :weight 'medium)
+        doom-variable-pitch-font (font-spec :family "Avenir" :size 14 :weight 'regular)
+        doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular)
+        )
 
-(setq doom-themes-treemacs-enable-variable-pitch nil)
+  (setq doom-themes-treemacs-enable-variable-pitch nil)
 
-;; bigger characters when selecting windows with avy
-(custom-set-faces!
-  '(aw-leading-char-face
-    :foreground "white" :background "red"
-    :weight bold :height 2.5 :box (:line-width 10 :color "red")))
+  ;; bigger characters when selecting windows with avy
+  (custom-set-faces!
+    '(aw-leading-char-face
+      :foreground "white" :background "red"
+      :weight bold :height 2.5 :box (:line-width 10 :color "red")))
+  )
 ;; Fonts:1 ends here
 
 ;; [[file:config.org::*Theming][Theming:1]]
@@ -884,18 +889,4 @@ is selected, only the bare key is returned."
    '(("\\`g s" . "\\`evilem--?motion-\\(.*\\)") . (nil . "◃\\1"))
    ))
 (setq which-key-idle-delay 0.5) ;; I need the help, I really do
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-agenda-files
-   '("~/org/chemie/chemie_abi.org" "~/org/mathe/mathe_abi.org" "/home/hoangolo/org/todo.org" "/home/hoangolo/org/Physik.org" "~/org/chemie/chemie.org" "/home/hoangolo/org/2020-07-01t1449.org" "/home/hoangolo/org/Git.org" "/home/hoangolo/org/README.org" "/home/hoangolo/org/Vim.org" "/home/hoangolo/org/berechnung.org" "/home/hoangolo/org/blender.org" "/home/hoangolo/org/elfeed.org" "/home/hoangolo/org/emacs.org" "/home/hoangolo/org/englisch.org" "/home/hoangolo/org/ideas.org" "/home/hoangolo/org/index.org" "/home/hoangolo/org/jobsuche.org" "/home/hoangolo/org/journal.org" "/home/hoangolo/org/musik.org" "/home/hoangolo/org/notes.org" "/home/hoangolo/org/org-mode-tutorial.org" "/home/hoangolo/org/pandoc.org" "/home/hoangolo/org/rulesforsuccess.org" "/home/hoangolo/org/sek.org" "/home/hoangolo/org/sek_after_corona.org" "/home/hoangolo/org/tasks.org" "/home/hoangolo/org/test_export.org" "/home/hoangolo/org/tips.org" "/home/hoangolo/org/vocabulary_english.org" "/home/hoangolo/org/xmonad.org")))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 ;; rest:2 ends here
