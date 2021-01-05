@@ -1,36 +1,13 @@
-#+TITLE: Doom Emacs Configuration
-#+AUTHOR: hoangolo
-#+PROPERTY: header-args:elisp :tangle yes :cache yes :results silent :comments yes
-#+PROPERTY: header-args:shell :tangle "setup.sh"
-#+PROPERTY: header-args :tangle no :results silent
-#+HTML_HEAD: <link rel='shortcut icon' type='image/png' href='https://www.gnu.org/software/emacs/favicon.png'>
-
-* Introduction
-This is how I configured Doom Emacs for personal, and later hopefully professional, use.
-Thanks go out to Richard Stallman for creating this beautiful editor, the GNU Project for making GNU/Linux happen, and Henrik Lissner for bringing DOOM Emacs into life.
-
-Also, most of my configuration I have gratiously stolen from various people all over the internet.
-As they are too numerous to mention here, I want to address all of them here:
-*Thank you for helping me on my emacs journey!*
-
-* Main configuration
-:PROPERTIES:
-:header-args:elisp: :tangle "config.el" :comments yes
-:END:
-Slightly improving performance when loading the configuration file by defining the lexical binding (this is included by default).
-#+begin_src elisp :tangle yes
+;; [[file:config.org::*Main configuration][Main configuration:1]]
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
-#+end_src
-** Personal information
-These credentials are usually included in places like =org-mode= exports and writing mails etc.
-#+begin_src elisp :tangle yes
+;; Main configuration:1 ends here
+
+;; [[file:config.org::*Personal information][Personal information:1]]
 (setq user-full-name "Hoang Seidel"
       user-mail-address "hoangseidel02@gmail.com")
-#+end_src
-** Changing defaults
-*** Simple settings
-Various improvements to Emacs to numerous to explain in detail.
-#+begin_src elisp :tangle yes
+;; Personal information:1 ends here
+
+;; [[file:config.org::*Simple settings][Simple settings:1]]
 (setq-default
  delete-by-moving-to-trash t                      ; Delete files to trash
  tab-width 4                                      ; Set width for tabs
@@ -56,20 +33,15 @@ Various improvements to Emacs to numerous to explain in detail.
 (display-battery-mode nil)
 
 (global-subword-mode 1)                           ; Iterate through CamelCase words
-#+end_src
+;; Simple settings:1 ends here
 
-*** Customize interface
-Changes made using the ~customize-group~ are by default added to th =init.el= file, changing the destination to a separate file is quite easy.
-#+begin_src elisp :tangle yes
+;; [[file:config.org::*Customize interface][Customize interface:1]]
 (setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
 (when (file-exists-p custom-file)
   (load custom-file))
-#+end_src
-** Doom configuration
-*** Theming
-**** Fonts
-I like the 'JetBrains Mono' font, especially in the terminal and everything else related to source code. Because I do occasionally switch around to Iosevka or Fira Mono, I like to keep them all in the config, and just comment out the one I'm not using at the moment.
-#+begin_src elisp :tangle yes
+;; Customize interface:1 ends here
+
+;; [[file:config.org::*Fonts][Fonts:1]]
 ;; (setq doom-font (font-spec :family "Fira Mono" :size 14 :weight 'medium)
 ;;       doom-big-font (font-spec :family "Fira Mono" :size 20 :weight 'medium)
 ;;       doom-variable-pitch-font (font-spec :family "Avenir" :size 14 :weight 'regular)
@@ -92,12 +64,9 @@ I like the 'JetBrains Mono' font, especially in the terminal and everything else
   '(aw-leading-char-face
     :foreground "white" :background "red"
     :weight bold :height 2.5 :box (:line-width 10 :color "red")))
-#+end_src
-Also =org-mode=, in combination with =mixed-pitch-mode=, uses variable-width fonts for text and headings, for which I personally like either 'Overpass' or 'Bahnschrift', the latter is a Microsoft font.
-**** Theming
-I have really grown to like the [[https:github.com/ogdenwebb/emacs-kaolin-themes][kaolin-themes]] collection. Kaolin themes have very good compatibility with dialog boxes from ~ivy~ and others, which I will get to later.
-My favorite dark theme though is Doom's own Tomorrow Night theme, and my my favorite light theme is Zaiste.
-#+begin_src elisp :tangle yes
+;; Fonts:1 ends here
+
+;; [[file:config.org::*Theming][Theming:1]]
 ;; (setq doom-theme 'zaiste)
 
 (setq doom-theme 'doom-tomorrow-night)
@@ -109,9 +78,9 @@ My favorite dark theme though is Doom's own Tomorrow Night theme, and my my favo
         kaolin-themes-hl-line-colored t
         kaolin-themes-distinct-company-scrollbar t
         kaolin-themes-git-gutter-solid t))
-#+end_src
-On macOS I want the theme to be dependent on the system state (dark or light). This is dependent on a feature currently only available on ~emacs-plus~.
-#+begin_src elisp :tangle yes
+;; Theming:1 ends here
+
+;; [[file:config.org::*Theming][Theming:2]]
 (defun my/apply-theme (appearance)
   "Load theme, taking current system APPEARANCE into consideration."
   (mapc #'disable-theme custom-enabled-themes)
@@ -123,11 +92,9 @@ On macOS I want the theme to be dependent on the system state (dark or light). T
   (progn
     (add-hook 'ns-system-appearance-change-functions 'my/apply-theme)
     ))
-#+end_src
+;; Theming:2 ends here
 
-**** Modeline
-For the ~doom-modeline~ I don't like it very cluttered up, which is why I've removed unnecessary information like the current buffer encoding and have enabled project name truncating, which shortens the file path up to the current project path.
-#+begin_src elisp :tangle yes
+;; [[file:config.org::*Modeline][Modeline:1]]
 (setq all-the-icons-scale-factor 1.1)
 (setq doom-modeline-icon (display-graphic-p)
       doom-modeline-buffer-encoding nil
@@ -140,17 +107,16 @@ For the ~doom-modeline~ I don't like it very cluttered up, which is why I've rem
       doom-modeline-irc t
       doom-modeline-mu4e t
       doom-modeline-enable-word-count nil)
-#+end_src
-Enabling current time in the modeline.
-#+begin_src elisp :tangle yes
+;; Modeline:1 ends here
 
+;; [[file:config.org::*Modeline][Modeline:2]]
 (setq display-time-format "%a %e. %b %H:%M")
 (setq display-time-default-load-average nil)
 
 (display-time-mode 1)                             ; Enable time in the mode-line
-#+end_src
-Finally defining my custom modeline and setting it as default.
-#+begin_src elisp :tangle yes
+;; Modeline:2 ends here
+
+;; [[file:config.org::*Modeline][Modeline:3]]
 ;; (mu4e-alert-enable-mode-line-display)
 
 ;; (doom-modeline-def-modeline 'my-simple-line
@@ -162,38 +128,36 @@ Finally defining my custom modeline and setting it as default.
   (doom-modeline-set-modeline 'my-simple-line 'default))
 
 (add-hook 'doom-modeline-mode-hook 'setup-custom-doom-modeline)
-#+end_src
-**** Miscellaneous
-I don't really like the default ASCII logo of Doom Emacs, so I replace it with the official Emacs logo.
-#+begin_src elisp :tangle yes
+;; Modeline:3 ends here
+
+;; [[file:config.org::*Miscellaneous][Miscellaneous:1]]
 ;; (setq +doom-dashboard-banner-dir "~/.config/doom/banners/")
 ;; (setq +doom-dashboard-banner-file "logo.png")
-#+end_src
-Visual line numbers, like the hybrid line numbering in Vim, shows the current line number as well as how far away other lines are from the current, improving navigation.
-Although this can be quite disorienting, I'm just using normal numbering now.
-#+begin_src elisp :tangle yes
+;; Miscellaneous:1 ends here
+
+;; [[file:config.org::*Miscellaneous][Miscellaneous:2]]
 (setq display-line-numbers-type t)
-#+end_src
-I like the visual cues indenting guides provide, so I change the character to a unconspicuos arrow.
-#+begin_src elisp :tangle yes
+;; Miscellaneous:2 ends here
+
+;; [[file:config.org::*Miscellaneous][Miscellaneous:3]]
 ;; (setq highlight-indent-guides-mode 'character)
 ;; (setq highlight-indent-guides-character ?→)
 ;; (setq highlight-indent-guides-delay 0.5)
 ;; (setq highlight-indent-guides-auto-character-face-perc 20)
-#+end_src
-Flashing the cursor on jumps is quite useful.
-#+begin_src elisp :tangle yes
+;; Miscellaneous:3 ends here
+
+;; [[file:config.org::*Miscellaneous][Miscellaneous:4]]
 (nav-flash-show)
-#+end_src
-*** Org mode
-#+begin_src elisp :tangle yes
+;; Miscellaneous:4 ends here
+
+;; [[file:config.org::*Org mode][Org mode:1]]
 (map! :leader
       ;; :n "SPC" #'counsel-M-x
       :n ";"   #'pp-eval-expression)
 (set-register ?o (cons 'file "~/org/index.org"))
-#+end_src
+;; Org mode:1 ends here
 
-#+begin_src elisp :tangle yes
+;; [[file:config.org::*Org mode][Org mode:2]]
 (use-package! doct
   :commands (doct))
 
@@ -727,9 +691,9 @@ is selected, only the bare key is returned."
 (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
 
 (provide 'org-config)
-#+end_src
-*** Hydra
-#+begin_src elisp :tangle yes
+;; Org mode:2 ends here
+
+;; [[file:config.org::*Hydra][Hydra:1]]
 ;; ;; hydra
 ;; (defhydra hydra-pdftools (:color blue :hint nil)
 ;;         "
@@ -785,17 +749,16 @@ is selected, only the bare key is returned."
 ;;       :desc "hydra/text" "o t" #'+hydra/text-zoom/body)
 ;; (map! :leader
 ;;       :desc "hydra/pdf" "o P" #'hydra-pdftools/body)
-#+end_src
-*** mu4e
-Display emails in plain text instead of stupid html.
-#+begin_src elisp :tangle yes
+;; Hydra:1 ends here
+
+;; [[file:config.org::*mu4e][mu4e:1]]
 (when IS-MAC
   (setq mu4e-html2text-command
         "textutil -stdin -format html -convert txt -stdout")
   )
-#+end_src
-*** dired
-#+begin_src elisp :tangle yes
+;; mu4e:1 ends here
+
+;; [[file:config.org::*dired][dired:1]]
 (after! dired
   (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
   (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map)
@@ -811,80 +774,13 @@ Display emails in plain text instead of stupid html.
     (setq mac-command-modifier 'meta)
     )
   )
-#+end_src
+;; dired:1 ends here
 
-* Package loading
-:PROPERTIES:
-:header-args:elisp: :tangle "packages.el" :comments no
-:END:
-This file shouldn't be byte compiled.
-#+BEGIN_SRC elisp :tangle "packages.el" :comments no
-;; -*- no-byte-compile: t; -*-
-;;; $DOOMDIR/packages.el
-#+END_SRC
-
-** General packages
-
-*** Prompting
-#+begin_src elisp
-;; ;; disabled for now, because of issues after reloading config
-(package! ivy-posframe)
-(package! ivy-rich)
-#+end_src
-
-*** Theming
-#+begin_src elisp
-(package! kaolin-themes)
-(package! rainbow-mode)
-;; (package! pretty-mode)
-#+end_src
-
-**** Info colours
-This makes manual pages nicer to look at :)
-Variable pitch fontification + colouring
-#+BEGIN_SRC elisp
-(package! info-colors :pin "47ee73cc19b1049eef32c9f3e264ea7ef2aaf8a5")
-#+END_SRC
-*** Org
-#+begin_src elisp
-(package! doct)
-(package! org-drill)
-(package! org-fragtog)
-(package! org-super-agenda)
-;; (package! ox-reveal)
-(package! ox-hugo)
-#+end_src
-*** Snippets
-#+begin_src elisp
-;; (package! doom-snippets :ignore t)
-(package! yasnippet-snippets)
-#+end_src
-*** Web
-#+begin_src elisp
-(package! htmlize)
-(package! web-beautify)
-#+end_src
-*** Misc
-#+begin_src elisp
-(package! lorem-ipsum)
-(package! auctex)
-(package! pdf-tools)
-;; (package! emms)
-(package! dired-subtree)
-(package! doct)
-(package! mu4e-alert)
-(package! exec-path-from-shell)
-#+end_src
-
-* rest
-:PROPERTIES:
-:header-args:elisp: :tangle "config.el" :comments yes
-:END:
-Slightly improving performance when loading the configuration file by defining the lexical binding (this is included by default).
-#+begin_src elisp :tangle yes
+;; [[file:config.org::*rest][rest:1]]
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
-#+end_src
-#+begin_src elisp :tangle yes
+;; rest:1 ends here
+
+;; [[file:config.org::*rest][rest:2]]
 ;; pretty code
 ;; (remove-hook! 'text-mode-hook #'display-line-numbers-mode)
 ;; (add-hook! 'text-mode-hook :append (setq-local display-line-numbers nil))
@@ -1002,4 +898,4 @@ Slightly improving performance when loading the configuration file by defining t
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-#+end_src
+;; rest:2 ends here

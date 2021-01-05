@@ -18,7 +18,7 @@ return require('packer').startup(
         use {'wbthomason/packer.nvim', opt = true}
         -- use {'npxbr/gruvbox.nvim', requires = {'tjdevries/colorbuddy.vim'}}
         use {'kaicataldo/material.vim'}
-        use {'kaicataldo/material.vim', branch= 'main'}
+        use {'chriskempson/base16-vim'}
 
         -- Utilities
         use 'tpope/vim-surround'
