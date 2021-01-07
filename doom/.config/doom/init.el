@@ -44,11 +44,13 @@
        ;; neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
        (popup
+        +all
         +defaults)   ; tame sudden yet inevitable temporary windows
+       (ligatures +iosevka)
        ;; (pretty-code
         ;; +iosevka)       ; ligatures or substitute text with pretty symbols
        ;; tabs              ; an tab bar for Emacs
-       treemacs          ; a project drawer, like neotree but cooler
+       ;; treemacs          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
        ;; vc-gutter         ; vcs diff in the fringe
        ;; vi-tilde-fringe   ; fringe tildes to mark beyond EOB
@@ -58,7 +60,7 @@
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies
-       ;; file-templates    ; auto-snippets for empty files
+       file-templates    ; auto-snippets for empty files
        ;; fold              ; (nigh) universal code folding
        (format +onsave)  ; automated prettiness
        ;; god               ; run Emacs commands without modifier keys
@@ -67,20 +69,21 @@
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
-       ;; snippets          ; my elves. They type so I don't have to
+       snippets          ; my elves. They type so I don't have to
        ;;word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
        (dired
+        ;; +ranger
         +icons)             ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
        (ibuffer
         +icons)         ; interactive buffer management
-       undo              ; persistent, smarter undo for your inevitable mistakes
+       (undo +tree)              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
-       ;; eshell            ; the elisp shell that works everywhere
+       eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;; term              ; basic terminal emulator for Emacs
        vterm             ; the best terminal emulation in Emacs
@@ -138,7 +141,7 @@
        ;;fsharp           ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;;(go +lsp)         ; the hipster dialect
-       ;; (haskell +dante)  ; a language that's lazier than I am
+       (haskell +dante +lsp)  ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        ;;json              ; At least it ain't XML
@@ -161,7 +164,7 @@
         +pretty
         ;; +hugo
         ;; +babel
-        ;; +present
+        +present
         ;; +gnuplot
         +pandoc
         ;; +jupyter
@@ -199,6 +202,7 @@
        ;;twitter           ; twitter client https://twitter.com/vnought
 
        :os
+       ;; tty
        macos             ; MacOS-specific commands
 
        :config

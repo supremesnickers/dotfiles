@@ -32,3 +32,5 @@
 (package! doct)
 (package! mu4e-alert)
 (package! exec-path-from-shell)
+
+(package! esup)

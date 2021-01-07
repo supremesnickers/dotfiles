@@ -38,6 +38,7 @@ Various improvements to Emacs to numerous to explain in detail.
  window-combination-resize t                      ; take new window space from all other windows (not just current)
  x-stretch-cursor t)                              ; Stretch cursor to the glyph width
 
+(global-undo-tree-mode)
 (setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
       evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
       auto-save-default t                         ; Nobody likes to loose work, I certainly don't
@@ -806,16 +807,16 @@ Display emails in plain text instead of stupid html.
   (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map)
   (map! :n "-" #'dired-jump)
   (setq dired-subtree-use-backgrounds nil)
-  (add-hook 'dired-mode-hook #'dired-hide-details-mode))
+  ;; (add-hook 'dired-mode-hook #'dired-hide-details-mode))
 
-(when IS-MAC
-  (progn
-    (setq dired-use-ls-dired t
-          insert-directory-program "/usr/local/bin/gls"
-          dired-listing-switches "-aBhl --group-directories-first")
-    (setq mac-command-modifier 'meta)
+  (when IS-MAC
+    (progn
+      (setq dired-use-ls-dired t
+            insert-directory-program "/usr/local/bin/gls"
+            dired-listing-switches "-aBhl --group-directories-first")
+      (setq mac-command-modifier 'meta)
+      )
     )
-  )
 #+end_src
 
 * Package loading
@@ -879,6 +880,8 @@ Variable pitch fontification + colouring
 (package! doct)
 (package! mu4e-alert)
 (package! exec-path-from-shell)
+
+(package! esup)
 #+end_src
 
 * rest
@@ -897,10 +900,10 @@ Slightly improving performance when loading the configuration file by defining t
 (setq global-prettify-symbols-mode nil)
 (remove-hook! 'c-mode 'prettify-symbols-mode)
 
-;; latex
-(latex-preview-pane-enable)
-(require 'tex)
-(TeX-global-PDF-mode t)
+;; ;; latex
+;; (latex-preview-pane-enable)
+;; (require 'tex)
+;; (TeX-global-PDF-mode t)
 
 ;; PDF
 (pdf-tools-install)
@@ -957,7 +960,7 @@ Slightly improving performance when loading the configuration file by defining t
 (setq elfeed-search-filter "@1-week-ago +unread +news ")
 (map! :leader
       :prefix ("o" . "open")
-      :desc "Elfeed" "e" #'elfeed)
+      :desc "Elfeed" "E" #'elfeed)
 
 (require 'elfeed-org)
 (elfeed-org)
