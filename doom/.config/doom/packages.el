@@ -1,8 +1,6 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 
-;; ;; disabled for now, because of issues after reloading config
-(package! ivy-posframe)
 (package! ivy-rich)
 
 (package! kaolin-themes)
@@ -29,7 +27,6 @@
 (package! pdf-tools)
 ;; (package! emms)
 (package! dired-subtree)
-(package! doct)
 (package! mu4e-alert)
 (package! exec-path-from-shell)
 

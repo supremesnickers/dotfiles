@@ -15,6 +15,7 @@
  window-combination-resize t                      ; take new window space from all other windows (not just current)
  x-stretch-cursor t)                              ; Stretch cursor to the glyph width
 
+(global-undo-tree-mode)
 (setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
       evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
       auto-save-default t                         ; Nobody likes to loose work, I certainly don't
@@ -769,7 +770,8 @@ is selected, only the bare key is returned."
   (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map)
   (map! :n "-" #'dired-jump)
   (setq dired-subtree-use-backgrounds nil)
-  (add-hook 'dired-mode-hook #'dired-hide-details-mode))
+  ;; (add-hook 'dired-mode-hook #'dired-hide-details-mode))
+  )
 
 (when IS-MAC
   (progn
@@ -793,10 +795,10 @@ is selected, only the bare key is returned."
 (setq global-prettify-symbols-mode nil)
 (remove-hook! 'c-mode 'prettify-symbols-mode)
 
-;; latex
-(latex-preview-pane-enable)
-(require 'tex)
-(TeX-global-PDF-mode t)
+;; ;; latex
+;; (latex-preview-pane-enable)
+;; (require 'tex)
+;; (TeX-global-PDF-mode t)
 
 ;; PDF
 (pdf-tools-install)
@@ -853,7 +855,7 @@ is selected, only the bare key is returned."
 (setq elfeed-search-filter "@1-week-ago +unread +news ")
 (map! :leader
       :prefix ("o" . "open")
-      :desc "Elfeed" "e" #'elfeed)
+      :desc "Elfeed" "E" #'elfeed)
 
 (require 'elfeed-org)
 (elfeed-org)

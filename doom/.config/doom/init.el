@@ -25,7 +25,7 @@
        (ivy
        +icons
        +prescient
-       ;; +childframe
+       +childframe
        +fuzzy
        )
 
@@ -34,7 +34,7 @@
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       ;; fill-column       ; a `fill-column' indicator
+       fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;; hydra
        ;; indent-guides     ; highlighted indent columns
@@ -43,12 +43,8 @@
        nav-flash         ; blink cursor line after big motions
        ;; neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
-       (popup
-        +all
-        +defaults)   ; tame sudden yet inevitable temporary windows
+       (popup +all +defaults)   ; tame sudden yet inevitable temporary windows
        (ligatures +iosevka)
-       ;; (pretty-code
-        ;; +iosevka)       ; ligatures or substitute text with pretty symbols
        ;; tabs              ; an tab bar for Emacs
        ;; treemacs          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
@@ -60,7 +56,7 @@
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies
-       file-templates    ; auto-snippets for empty files
+       ;; file-templates    ; auto-snippets for empty files
        ;; fold              ; (nigh) universal code folding
        (format +onsave)  ; automated prettiness
        ;; god               ; run Emacs commands without modifier keys
@@ -73,12 +69,9 @@
        ;;word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
-       (dired
-        ;; +ranger
-        +icons)             ; making dired pretty [functional]
+       (dired +icons)             ; making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
-       (ibuffer
-        +icons)         ; interactive buffer management
+       (ibuffer +icons)         ; interactive buffer management
        (undo +tree)              ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 
@@ -94,6 +87,7 @@
        ;; grammar           ; tasing grammar mistake every you make
 
        :tools
+       lsp
        ;;ansible
        ;;debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
@@ -175,11 +169,11 @@
        ;;purescript        ; javascript, but functional
        ;; python            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
-       ;; racket            ; a DSL for DSLs
+       racket            ; a DSL for DSLs
        ;;rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       (rust +lsp)              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;scheme            ; a fully conniving family of lisps
        (sh)                ; she sells {ba,z,fi}sh shells on the C xor
