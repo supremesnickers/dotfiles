@@ -80,10 +80,10 @@ I like the 'JetBrains Mono' font, especially in the terminal and everything else
 ;;       doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular))
 
 (if IS-LINUX
-    (setq doom-font (font-spec :family "Iosevka SS14" :size 15 :weight 'medium)
-          doom-big-font (font-spec :family "Iosevka SS14" :size 22 :weight 'medium)
-          doom-variable-pitch-font (font-spec :family "Avenir" :size 14 :weight 'regular)
-          doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular))
+    (setq doom-font (font-spec :family "Iosevka SS14" :size 17 :weight 'medium)
+          doom-big-font (font-spec :family "Iosevka SS14" :size 25 :weight 'medium)
+          doom-variable-pitch-font (font-spec :family "Avenir" :size 17 :weight 'regular)
+          doom-unicode-font (font-spec :family "FontAwesome" :size 17 :weight 'regular))
   (setq doom-font (font-spec :family "Iosevka SS14" :size 15 :weight 'medium)
         doom-big-font (font-spec :family "Iosevka SS14" :size 22 :weight 'medium)
         doom-variable-pitch-font (font-spec :family "Avenir" :size 14 :weight 'regular)
