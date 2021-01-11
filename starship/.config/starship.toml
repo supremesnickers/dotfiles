@@ -1,6 +1,11 @@
+# format = """
+# $directory [YEET](bold yellow) [>](bold green) 
+# """
+
 format = """
-$directory [YEET](bold yellow) [>](bold green) 
+$directory[:](bold red) 
 """
+
 add_newline = false
 [package]
 disabled = true
@@ -20,4 +25,4 @@ style = "bold blue"
 
 [directory]
 # "truncation_symbol" = "..."
-"style" = "bold red"
+"style" = "blue"
