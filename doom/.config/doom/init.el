@@ -36,7 +36,7 @@
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
-       ;; hydra
+       hydra
        ;; indent-guides     ; highlighted indent columns
        ;; minimap           ; show a map of the code on the side
        (modeline)          ; snazzy, Atom-inspired modeline, plus API
@@ -135,7 +135,7 @@
        ;;fsharp           ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;;(go +lsp)         ; the hipster dialect
-       (haskell +dante +lsp)  ; a language that's lazier than I am
+       ;; (haskell +dante +lsp)  ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        ;;json              ; At least it ain't XML
@@ -143,12 +143,12 @@
        ;; javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
-       latex             ; writing papers in Emacs has never been so fun
+       ;; latex             ; writing papers in Emacs has never been so fun
        ;;lean
        ;;factor
        ;;ledger            ; an accounting system in Emacs
-       lua               ; one-based indices? one-based indices
-       (markdown +grip)          ; writing docs for people to ignore
+       ;; lua               ; one-based indices? one-based indices
+       ;; (markdown +grip)          ; writing docs for people to ignore
        ;; nim               ; python + lisp at the speed of c
        ;; nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
@@ -157,7 +157,7 @@
         ;; +dragndrop
         +pretty
         ;; +hugo
-        ;; +babel
+        +babel
         +present
         ;; +gnuplot
         +pandoc
@@ -181,11 +181,11 @@
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
-       web               ; the tubes
+       ;; web               ; the tubes
        ;; yaml              ; JSON, but readable
 
       :email
-       (mu4e +gmail)
+       ;; (mu4e +gmail)
        ;; notmuch
        ;; (wanderlust)
 
