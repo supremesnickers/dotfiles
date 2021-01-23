@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+get_mas_price() {
+    mas info "$1" 2>/dev/null | head -n 1 | sed -e 's/^.*\[//g' -e 's/\[//' -e 's/\]//'
+}
+
+get_mas_id() {
+    mas search "$1" 2>/dev/null | grep "$1" | head -1 | awk '{print $1}'
+}
+
+get_mas_app() {
+    PS3="Choose the app: "
+    IFS=$'\n' && options=($(mas search "$1" 2>/dev/null | sed -e 's/^[ \t]*//g;s/^[0-9]*[ \t]//g' -e 's/(.*)//g; s/[ \t]*$//g; s/^[ \t]*//g'))
+    if [ $# -eq 1 ]
+    then
+        select opt in "${options[@]}"
+        do
+            case $opt in
+                *)
+                    echo "$opt"
+                    break
+                    ;;
+            esac
+        done
+    elif [ $# -gt 1 ]
+    then
+        echo "${options[$2]}"
+    fi
+}
+
+get_mas_price "$(get_mas_id "$(get_mas_app "$1")")"

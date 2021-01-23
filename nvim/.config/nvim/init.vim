@@ -171,7 +171,7 @@ if (has('termguicolors'))
   set termguicolors
 endif
 
-colorscheme base16-tomorrow-night
+colorscheme base16-material-darker
 let base16colorspace=256
 
 let g:gruvbox_italic=1

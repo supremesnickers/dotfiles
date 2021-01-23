@@ -1,4 +1,5 @@
 source ~/.config/fish/alias.fish
+source ~/.config/fish/functions.fish
 
 set -e fish_greeting
 # Fish syntax highlighting
@@ -23,6 +24,8 @@ set -g fish_color_search_match 'bryellow' '--background=brblack'
 set -g fish_color_selection 'white' '--bold' '--background=brblack'
 set -g fish_color_user brgreen
 set -g fish_color_valid_path --underline
+
+export EDITOR=emacsclient
 
 # Install Starship
 starship init fish | source

@@ -29,7 +29,7 @@ These credentials are usually included in places like =org-mode= exports and wri
 #+end_src
 ** Changing defaults
 *** Simple settings
-Various improvements to Emacs to numerous to explain in detail.
+Various improvements to Emacs too numerous to explain in detail.
 #+begin_src elisp :tangle yes
 (setq-default
  delete-by-moving-to-trash t                      ; Delete files to trash
