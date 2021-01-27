@@ -3,7 +3,7 @@ export ZSH="~/.oh-my-zsh"
 
 plugins=(colored-man-pages tmuxinator web-search command-not-found emacs osx)
 # color the username and stuff
-autoload -Uz compinit && compinit
+# autoload -Uz compinit && compinit
 autoload -U colors && colors
 
 # deprecated due to the amazing starship prompt
@@ -38,3 +38,9 @@ eval "$(starship init zsh)"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f "/Users/supremesnickers/.ghcup/env" ] && source "/Users/supremesnickers/.ghcup/env" # ghcup-env
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/supremesnickers/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/supremesnickers/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/supremesnickers/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/supremesnickers/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

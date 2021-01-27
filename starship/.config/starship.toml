@@ -3,7 +3,7 @@
 # """
 
 format = """
-$directory[:](bold red) 
+$python$directory[:](bold red) 
 """
 
 add_newline = false
@@ -33,3 +33,6 @@ style_root = "black bold"
 format = "[$user]($style)"
 disabled = false
 show_always = true
+
+[python]
+format = '(\($virtualenv\))($style) '
