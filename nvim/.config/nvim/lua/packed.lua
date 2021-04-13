@@ -12,11 +12,10 @@ vim.cmd('packadd packer.nvim')
 
 vim.cmd [[ autocmd BufWritePost packed.lua PackerCompile ]]
 
-return require('packer').startup(
-    function()
+return require('packer').startup(function()
 
         use {'wbthomason/packer.nvim', opt = true}
-        -- use {'npxbr/gruvbox.nvim', requires = {'tjdevries/colorbuddy.vim'}}
+        use {'npxbr/gruvbox.nvim', requires = {"rktjmp/lush.nvim"}}
         use {'kaicataldo/material.vim'}
         use {'chriskempson/base16-vim'}
 
@@ -27,6 +26,7 @@ return require('packer').startup(
         use 'mhinz/vim-startify'
         use 'tpope/vim-commentary'
         use 'jiangmiao/auto-pairs'
+        use 'justinmk/vim-sneak'
 
         -- Tmux support
         -- Plug 'edkolev/tmuxline.vim'
@@ -44,7 +44,10 @@ return require('packer').startup(
         use 'norcalli/nvim-colorizer.lua'
 
         use {'junegunn/fzf', { run =  ':fzf#install()' } }
-        use 'junegunn/fzf.vim'
+        use {
+          'nvim-telescope/telescope.nvim',
+          requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+        }
 
         -- syntax hightlighting
         use 'scrooloose/syntastic'

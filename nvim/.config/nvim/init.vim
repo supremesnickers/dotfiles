@@ -10,43 +10,20 @@
 " LUA
 lua require('init')
 lua require'lspconfig'.rust_analyzer.setup({})
-" compiling rust code with hotkey
-function! TermWrapper(command) abort
-    if !exists('g:split_term_style') | let g:split_term_style = 'vertical' | endif
-    if g:split_term_style ==# 'vertical'
-        let buffercmd = 'vnew'
-    elseif g:split_term_style ==# 'horizontal'
-        let buffercmd = 'new'
-    else
-        echoerr 'ERROR'
-        throw 'ERROR'
-    endif
-    if exists('g:split_term_resize_cmd')
-        exec g:split_term_resize_cmd
-    endif
-    exec 'term ' . a:command
-    exec 'startinsert'
-endfunction
-
-command! -nargs=0 CompileAndRun call TermWrapper(printf('rustc %s -o out && ./%s', expand('%'), expand('%:r')))
-autocmd FileType rust nnoremap <F6> :CompileAndRun<CR>
 
 command! -nargs=? -complete=dir HFiles
   \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
   \   'source': 'fd --type f --hidden --follow --exclude .git --no-ignore . '.expand(<q-args>)
   \ })))
 
-command! FASD call fzf#run(fzf#wrap({'source': 'fish -c "fasd -al"', 'options': '--no-sort --tac --tiebreak=index'}))
-nnoremap <silent> <Leader>fp :FASD<CR>
-
 " ------------key mapping-----------------
 let mapleader=" "
-
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 nmap <leader>oe :Explore<CR>
 
 nmap <leader>. <c-^>
+
+map <Leader>vp :VimuxPromptCommand<CR>
 
 " fzf
 nmap <leader>ff :Files<CR>
@@ -171,7 +148,7 @@ if (has('termguicolors'))
   set termguicolors
 endif
 
-colorscheme base16-material-darker
+colorscheme gruvbox
 let base16colorspace=256
 
 let g:gruvbox_italic=1
@@ -184,7 +161,7 @@ hi! Normal ctermbg=NONE
 
 " lightline
 let g:lightline = {
-      \ 'colorscheme': 'material_vim',
+      \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified'] ],
