@@ -3,7 +3,7 @@ source ~/dotfiles/zsh/functions
 # zsh shell config @hoangolo
 export ZSH="/Users/supremesnickers/.oh-my-zsh"
 
-plugins=(poetry colored-man-pages tmuxinator web-search command-not-found osx)
+plugins=(brew git poetry colored-man-pages tmuxinator web-search command-not-found osx)
 # color the username and stuff
 autoload -Uz compinit && compinit
 autoload -U colors && colors
