@@ -1,4 +1,4 @@
-source ~/dotfiles/zsh/functions
+source ~/dotfiles/zsh/functions.zsh
 
 # zsh shell config @hoangolo
 export ZSH="/Users/supremesnickers/.oh-my-zsh"
@@ -21,8 +21,7 @@ _comp_options+=(globdots)		# Include hidden files.
 alias ee='emacsclient -n'
 alias weather='curl wttr.in'
 alias svim='sudo nvim'
-alias ls='exa'
-alias ll='exa -lh'
+alias lx='exa --group-directories-first'
 alias mux='tmuxinator'
 alias lg='lazygit'
 
