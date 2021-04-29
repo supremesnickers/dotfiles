@@ -1,9 +1,12 @@
 source ~/dotfiles/zsh/functions.zsh
 
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # zsh shell config @hoangolo
 export ZSH="/Users/supremesnickers/.oh-my-zsh"
 
-plugins=(brew git poetry colored-man-pages tmuxinator web-search command-not-found osx)
+plugins=(brew nix-zsh-completions git poetry colored-man-pages tmuxinator web-search command-not-found osx)
 # color the username and stuff
 autoload -Uz compinit && compinit
 autoload -U colors && colors

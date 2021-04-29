@@ -25,3 +25,29 @@ ftpane() {
     tmux select-window -t $target_window
   fi
 }
+
+fda() {
+  local dir
+  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+}
+
+cf() {
+  local file
+
+  file="$(locate -i -0 $@ | grep --null -vE '~$' | fzf --read0 -0 -1)"
+
+  if [[ -n $file ]]
+  then
+     if [[ -d $file ]]
+     then
+        cd -- $file
+     else
+        cd -- ${file:h}
+     fi
+  fi
+}
+
+fif() {
+  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+  rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+}
