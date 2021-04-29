@@ -2,7 +2,6 @@
 #+AUTHOR: hoangolo
 #+PROPERTY: header-args:elisp :tangle yes :cache yes :results silent :comments yes
 #+PROPERTY: header-args:shell :tangle "setup.sh"
-#+PROPERTY: header-args :tangle no :results silent
 #+HTML_HEAD: <link rel='shortcut icon' type='image/png' href='https://www.gnu.org/software/emacs/favicon.png'>
 
 * Introduction
@@ -31,6 +30,8 @@ These credentials are usually included in places like =org-mode= exports and wri
 *** Simple settings
 Various improvements to Emacs too numerous to explain in detail.
 #+begin_src elisp :tangle yes
+(add-hook 'emacs-startup-hook 'toggle-frame-maximized) ; startup emacs maximized
+
 (setq-default
  delete-by-moving-to-trash t                      ; Delete files to trash
  tab-width 4                                      ; Set width for tabs
@@ -49,10 +50,10 @@ Various improvements to Emacs too numerous to explain in detail.
 
 (exec-path-from-shell-initialize)
 
-(if (equal "Power AC, battery N/A (N/A% load, remaining time N/A)"
-           (battery))
-    (setq display-battery-mode nil)
-  (setq display-battery-mode t))                       ; On laptops it's nice to know how much power you have
+;; (if (equal "Power AC, battery N/A (N/A% load, remaining time N/A)"
+;;            (battery))
+;;     (setq display-battery-mode nil)
+;;   (setq display-battery-mode t))                       ; On laptops it's nice to know how much power you have
 
 (global-subword-mode 1)                           ; Iterate through CamelCase words
 #+end_src
@@ -80,15 +81,21 @@ I like the 'JetBrains Mono' font, especially in the terminal and everything else
 ;;       doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular))
 
 (if IS-LINUX
-    (setq doom-font (font-spec :family "Iosevka SS14" :size 17 :weight 'medium)
-          doom-big-font (font-spec :family "Iosevka SS14" :size 25 :weight 'medium)
+    (setq doom-font (font-spec :family "Victor Mono" :size 17 :weight 'medium)
+          doom-big-font (font-spec :family "Victor Mono" :size 25 :weight 'medium)
           doom-variable-pitch-font (font-spec :family "Avenir" :size 17 :weight 'regular)
           doom-unicode-font (font-spec :family "FontAwesome" :size 17 :weight 'regular))
+
   (setq doom-font (font-spec :family "Victor Mono" :size 15 :weight 'medium)
         doom-big-font (font-spec :family "Victor Mono" :size 22 :weight 'medium)
         doom-variable-pitch-font (font-spec :family "Overpass" :size 14 :weight 'regular)
         doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular)
         )
+
+  ;; (setq doom-font (font-spec :family "FantasqueSansMono Nerd Font" :size 16 :weight 'regular)
+  ;;       doom-big-font (font-spec :family "FantasqueSansMono Nerd Font" :size 22 :weight 'regular)
+  ;;       doom-variable-pitch-font (font-spec :family "Avenir" :size 14 :weight 'regular)
+  ;;       doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular))
 
   (setq doom-themes-treemacs-enable-variable-pitch nil)
 
@@ -135,14 +142,14 @@ On macOS I want the theme to be dependent on the system state (dark or light). T
 For the ~doom-modeline~ I don't like it very cluttered up, which is why I've removed unnecessary information like the current buffer encoding and have enabled project name truncating, which shortens the file path up to the current project path.
 #+begin_src elisp :tangle yes
 (setq all-the-icons-scale-factor 1.1)
-(setq doom-modeline-icon (display-graphic-p)
+(setq doom-modeline-icon (display-graphic-p)     ; show icon in modeline if in GUI
       doom-modeline-buffer-encoding nil
       doom-modeline-modal-icon t
       doom-modeline-height 30
       doom-modeline-major-mode-icon t
-      doom-modeline-major-mode-color-icon nil
+      doom-modeline-major-mode-color-icon t
       ;; doom-modeline-buffer-file-name-style 'truncate-upto-project
-      doom-modeline-bar-width 3
+      doom-modeline-bar-width 1
       doom-modeline-irc t
       doom-modeline-mu4e t
       doom-modeline-enable-word-count nil)
@@ -153,7 +160,7 @@ Enabling current time in the modeline.
 (setq display-time-format "%a %e. %b %H:%M")
 (setq display-time-default-load-average nil)
 
-(display-time-mode 1)                             ; Enable time in the mode-line
+(after! doom-modeline (display-time-mode 1))                             ; Enable time in the mode-line
 #+end_src
 Finally defining my custom modeline and setting it as default.
 #+begin_src elisp :tangle yes
@@ -175,7 +182,7 @@ I don't really like the default ASCII logo of Doom Emacs, so I replace it with t
 ;; (setq fancy-splash-image "~/.config/doom/banners/doom-emacs-0.2.ai")
 #+end_src
 Visual line numbers, like the hybrid line numbering in Vim, shows the current line number as well as how far away other lines are from the current, improving navigation.
-Although this can be quite disorienting, I'm just using normal numbering now.
+Although this can be quite disorienting, I'm just using normal numbering now. To make selecting regions faster, I use evilmotions evilem-motion-next-line to jump to lines.
 #+begin_src elisp :tangle yes
 (setq display-line-numbers-type t)
 #+end_src
@@ -665,22 +672,22 @@ Flashing the cursor on jumps is quite useful.
 ;;         ;;   "* record %^{record on what topic}%? :private:\n :properties:\n :captured: %u\n :end:\n\n %i"))
 ;;         ))
 
-(setq hl-todo-keyword-faces
-      '(("TODO"      . warning)
-        ("ACT"       . warning)
-        ("BUY"       . warning)
-        ("MEET"      . warning)
-        ("STUDY"     . warning)
-        ("REVIEW"    . warning)
-        ("FIXME"     . warning)
-        ("DONE"      . success)
-        ("ACTED"     . success)
-        ("BOUGHT"    . success)
-        ("MET"       . success)
-        ("STUDIED"   . success)
-        ("CANCELLED"  . error)
-        ("POSTPONED" . error)
-        ))
+;; (setq hl-todo-keyword-faces
+;;       '(("TODO"      . warning)
+;;         ("ACT"       . warning)
+;;         ("BUY"       . warning)
+;;         ("MEET"      . warning)
+;;         ("STUDY"     . warning)
+;;         ("REVIEW"    . warning)
+;;         ("FIXME"     . warning)
+;;         ("DONE"      . success)
+;;         ("ACTED"     . success)
+;;         ("BOUGHT"    . success)
+;;         ("MET"       . success)
+;;         ("STUDIED"   . success)
+;;         ("CANCELLED"  . error)
+;;         ("POSTPONED" . error)
+;;         ))
 
 ;; ;; stolen from reddit
 ;; (setq-hook! org-mode
@@ -709,13 +716,16 @@ Flashing the cursor on jumps is quite useful.
 ;;     org-deadline-warning-days 7
 ;;     org-agenda-breadcrumbs-separator " ❱ "
 ;;     org-agenda-format-date 'my-org-agenda-format-date-aligned)
+
 ;; automatically toggle latex previews
 ;; (add-hook 'org-mode-hook 'org-fragtog-mode)
+
 ;; changing the bullets in org-mode
-(add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
-(setq org-superstar-headline-bullets-list '( "⁖" "⁖" "⁖" "⁖" "⁖" ))
-(setq org-superstar-prettify-item-bullets nil)
+;; (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+;; (setq org-superstar-headline-bullets-list '( "⁖" "⁖" "⁖" "⁖" "⁖" ))
+;; (setq org-superstar-prettify-item-bullets nil)
 ;; (setq org-superstar-headline-bullets-list '("☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷"))
+
 (setq org-refile-targets '((nil :maxlevel . 9)
                            (org-agenda-files :maxlevel . 9)))
 (setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
@@ -733,6 +743,19 @@ Flashing the cursor on jumps is quite useful.
 (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
 
 (provide 'org-config)
+#+end_src
+
+Improving org-mode latex export
+#+begin_src elisp
+;; change latex export to use latexmk
+(setq org-latex-pdf-process '("latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
+
+;; ;; add language support in latex export
+;; (add-to-list 'org-latex-packages-alist
+;;              '("AUTO" "babel" t ("pdflatex")))
+;; (add-to-list 'org-latex-packages-alist
+;;              '("AUTO" "polyglossia" t ("xelatex" "lualatex")))
+
 #+end_src
 *** Hydra
 #+begin_src elisp :tangle yes
@@ -880,6 +903,7 @@ Variable pitch fontification + colouring
 (package! exec-path-from-shell)
 
 (package! esup)
+(package! elisp-autofmt :recipe (:host gitlab :repo "ideasman42/emacs-elisp-autofmt"))
 #+end_src
 
 * rest
@@ -898,36 +922,41 @@ Slightly improving performance when loading the configuration file by defining t
 (setq global-prettify-symbols-mode nil)
 (remove-hook! 'c-mode 'prettify-symbols-mode)
 
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (require 'elisp-autofmt)
+            (elisp-autofmt-save-hook-for-this-buffer)))
+
 ;; ;; latex
 ;; (latex-preview-pane-enable)
 ;; (require 'tex)
 ;; (TeX-global-PDF-mode t)
 
-;; PDF
+;; ;; PDF
 ;; (pdf-tools-install)
 ;; (require 'pdf-view-mode)
-(setq-default pdf-view-display-size 'fit-page)
-(bind-keys :map pdf-view-mode-map
-           ("\\" . hydra-pdftools/body)
-           ("<s-spc>" .  pdf-view-scroll-down-or-next-page)
-           ("g"  . pdf-view-first-page)
-           ("G"  . pdf-view-last-page)
-           ("l"  . image-forward-hscroll)
-           ("h"  . image-backward-hscroll)
-           ("j"  . pdf-view-next-page)
-           ("k"  . pdf-view-previous-page)
-           ("e"  . pdf-view-goto-page)
-           ("u"  . pdf-view-revert-buffer)
-           ("al" . pdf-annot-list-annotations)
-           ("ad" . pdf-annot-delete)
-           ("aa" . pdf-annot-attachment-dired)
-           ("am" . pdf-annot-add-markup-annotation)
-           ("at" . pdf-annot-add-text-annotation)
-           ("y"  . pdf-view-kill-ring-save)
-           ("i"  . pdf-misc-display-metadata)
-           ("s"  . pdf-occur)
-           ("b"  . pdf-view-set-slice-from-bounding-box)
-           ("r"  . pdf-view-reset-slice))
+;; (setq-default pdf-view-display-size 'fit-page)
+;; (bind-keys :map pdf-view-mode-map
+;;            ("\\" . hydra-pdftools/body)
+;;            ("<s-spc>" .  pdf-view-scroll-down-or-next-page)
+;;            ("g"  . pdf-view-first-page)
+;;            ("G"  . pdf-view-last-page)
+;;            ("l"  . image-forward-hscroll)
+;;            ("h"  . image-backward-hscroll)
+;;            ("j"  . pdf-view-next-page)
+;;            ("k"  . pdf-view-previous-page)
+;;            ("e"  . pdf-view-goto-page)
+;;            ("u"  . pdf-view-revert-buffer)
+;;            ("al" . pdf-annot-list-annotations)
+;;            ("ad" . pdf-annot-delete)
+;;            ("aa" . pdf-annot-attachment-dired)
+;;            ("am" . pdf-annot-add-markup-annotation)
+;;            ("at" . pdf-annot-add-text-annotation)
+;;            ("y"  . pdf-view-kill-ring-save)
+;;            ("i"  . pdf-misc-display-metadata)
+;;            ("s"  . pdf-occur)
+;;            ("b"  . pdf-view-set-slice-from-bounding-box)
+;;            ("r"  . pdf-view-reset-slice))
 
 ;; yasnippet
 (add-to-list 'load-path
@@ -942,6 +971,19 @@ Slightly improving performance when loading the configuration file by defining t
   :after '(evil-window-split evil-window-vsplit)
   (+ivy/switch-buffer))
 (setq +ivy-buffer-preview t)
+
+(map! :map evil-window-map
+      "SPC" #'rotate-layout
+      ;; Navigation
+      "<left>"     #'evil-window-left
+      "<down>"     #'evil-window-down
+      "<up>"       #'evil-window-up
+      "<right>"    #'evil-window-right
+      ;; Swapping windows
+      "C-<left>"       #'+evil/window-move-left
+      "C-<down>"       #'+evil/window-move-down
+      "C-<up>"         #'+evil/window-move-up
+      "C-<right>"      #'+evil/window-move-right)
 
 ;; (global-pretty-mode t)
 (rainbow-mode)
@@ -976,15 +1018,13 @@ Slightly improving performance when loading the configuration file by defining t
 
 ;; open main index file
 (map! :leader
-      :desc "Main index" "o o" #'(lambda () (interactive) (find-file "~/org/index.org")))
+      :prefix "o"
+      (:desc "Main index" "o" #'(lambda () (interactive) (find-file "~/org/index.org")))
+      :desc "Open calendar" "c" #'org-goto-calendar)
 ;; start drill session
 (map! :map org-mode-map
       :leader
       :desc "org-drill" "m D" #'org-drill)
-
-(map! :leader
-      :prefix "o"
-      :desc "open calendar" "c" #'org-goto-calendar)
 
 ;; which key
 ;; replace all evil-* entries
@@ -992,8 +1032,8 @@ Slightly improving performance when loading the configuration file by defining t
 (after! which-key
   (pushnew!
    which-key-replacement-alist
-   '(("" . "\\`+?evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "◂\\1"))
-   '(("\\`g s" . "\\`evilem--?motion-\\(.*\\)") . (nil . "◃\\1"))
+   '(("" . "\\`+?evil[-:]?\\(?:a-\\)?\\(.*\\)") . (nil . "◂ \\1"))
+   '(("\\`g s" . "\\`evilem--?motion-\\(.*\\)") . (nil . "◃ \\1"))
    ))
 (setq which-key-idle-delay 0.5) ;; I need the help, I really do
 #+end_src

@@ -2,4 +2,5 @@
 .netrwhist
 scripts/scripts/clangd
 nvim/.config/nvim/tmp
-/doom/.config/doom/.auctex-auto/
+.auctex-auto/
+/doom/.config/doom/*.el
