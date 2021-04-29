@@ -20,7 +20,7 @@ set-window-option -g window-status-current-style fg=brightred
 set-window-option -g window-status-current-format " #I #[bold]#W"
 
 # pane border colors
-set-window-option -g pane-active-border-style fg=white
+set-window-option -g pane-active-border-style fg=brightwhite
 set-window-option -g pane-border-style fg='#222222'
 
 # message text
