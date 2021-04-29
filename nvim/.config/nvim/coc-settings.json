@@ -1,0 +1,49 @@
+{
+    "rust-analyzer.completion.autoimport.enable": true,
+    "rust-analyzer.inlayHints.enable": false,
+    "rust-analyzer.inlayHints.typeHints": false,
+    "rust-analyzer.inlayHints.chainingHints": false,
+
+    "rust-analyzer.inlayHints.typeHintsSeparator": "? ",
+    "rust-analyzer.inlayHints.chainingHintsSeparator": "? ",
+
+    "rust-analyzer.checkOnSave.enable": true,
+
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+    "rust-analyzer.procMacro.enable": true,
+
+    "rust-analyzer.cargo.allFeatures": true,
+    "rust-analyzer.checkOnSave.allFeatures": true,
+
+    "rust-analyzer.diagnostics.disabled": [
+        "macro-error"
+    ],
+    "languageserver": {
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": [
+        "--lsp"
+      ],
+      "rootPatterns": [
+        ".stack.yaml",
+        ".hie-bios",
+        "BUILD.bazel",
+        "cabal.config",
+        "package.yaml"
+      ],
+      "filetypes": [
+        "hs",
+        "lhs",
+        "haskell"
+      ],
+      "initializationOptions": {
+        "languageServerHaskell": {
+          "hlintOn": true,
+          "maxNumberOfProblems": 10,
+          "completionSnippetsOn": true
+        }
+      }
+    }
+  }
+}
