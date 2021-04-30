@@ -71,7 +71,7 @@ Changes made using the ~customize-group~ are by default added to th =init.el= fi
 *** Theming
 **** Fonts
 I like the 'JetBrains Mono' font, especially in the terminal and everything else related to source code. Because I do occasionally switch around to Iosevka or Fira Mono, I like to keep them all in the config, and just comment out the one I'm not using at the moment.
-#+begin_src elisp :tangle yes
+#+begin_src emacs-lisp :tangle yes
 (if IS-LINUX
     (setq doom-font (font-spec :family "Victor Mono" :size 17 :weight 'medium)
           doom-big-font (font-spec :family "Victor Mono" :size 25 :weight 'medium)
@@ -804,9 +804,12 @@ lineare-algebra
 The =master.org= file contains all the lectures in the directory and some
 additional course information.
 
-| Action                          | Function                 | Keybinding |
-|---------------------------------+--------------------------+------------|
-| Changing current course symlink | =uni-set-course-symlink= | =SPC k c=  |
+| Action                                | Function                     | Keybinding |
+|---------------------------------------+------------------------------+------------|
+| Changing current course symlink       | =uni-set-course-symlink=     | =SPC k c=  |
+| New lecture for current course        | =uni-new-lecture=            | =SPC k n=  |
+| Open current course directory         | =uni-open-course-directory=  | =SPC k d=  |
+| Edit file in current course directory | =uni-find-file-in-directory= | =SPC k f=  |
 
 
 **** Functions and bindings
@@ -836,6 +839,9 @@ Utility functions used internally.
 (defun uni--number-to-filename (num)
   (format "lec_%02d.org" num)
   )
+
+(defun uni--directory-to-title (dir)
+  (s-titleize (s-replace "-" " " dir)))
 #+end_src
 
 Now follow some general getter functions.
@@ -876,19 +882,26 @@ symlink in the =uni-root-path= directory and then updates the
 (defun uni-choose-course-symlink (&optional path)
   "Set a course inside the current semester as the current course."
   (interactive "P")
+  ;; path is a short string to make selecting easier
   (unless path
-    (setq path (ivy-read "Select course: " (uni-get-all-courses))))
-  (if (-contains? (uni-get-all-courses) path)
-      (uni-set-course-symlink path)
-    (when (y-or-n-p
-           (format "Create new course %s in %s? "
-                   (file-name-nondirectory path)
-                   (file-name-nondirectory uni-current-semester-path)))
-      ())))
+    (setq path (ivy-read "Select course: " (-map #'file-name-nondirectory (uni-get-all-courses)))))
+  ;; fpath is the full path
+  (let ((fpath (expand-file-name path uni-current-semester-path)))
+    (if (-contains? (uni-get-all-courses) fpath)
+        (uni-set-course-symlink fpath)
+
+      (when (y-or-n-p
+             (format "Create new course %s in %s? "
+                     (file-name-nondirectory fpath)
+                     (file-name-nondirectory uni-current-semester-path)))
+        (make-directory fpath)
+        (uni-init-course fpath)
+        (uni-set-course-symlink fpath)))))
 
 (map!
  :leader
  :prefix ("k" . "uni")
+ :desc "Set different/new course"
  :n "c" #'uni-choose-course-symlink)
 #+end_src
 
@@ -902,9 +915,9 @@ symlink in the =uni-root-path= directory and then updates the
   (setq uni-current-semester-path path))
 #+end_src
 
+Update the =master.org= file with all the lectures in the course directory.
 
-
-#+begin_src elisp :tangle yes
+#+begin_src emacs-lisp :tangle yes
 (defun uni-update-master-with-lectures (path)
   "Updates the master.org file of the given course to include all lectures."
   (let ((lecs (uni-get-all-lectures path)))
@@ -929,10 +942,16 @@ symlink in the =uni-root-path= directory and then updates the
            (directory-files uni-root-path 'full (rx (not "\.") eos))))
          (courses (-map (lambda (sem) (uni-get-all-courses sem)) semesters)))
     (-map (lambda (course) (uni-update-master-with-lectures course)) (-flatten courses))))
+#+end_src
 
+Create a new lecture file in the current course directory, bound to
+=SPC k n=.
+
+#+begin_src emacs-lisp :tangle yes
 (defun uni-new-lecture (&optional path)
   "Creates a new lecture org file in a course directory (by default the current),
 whose number is bigger than the last lecture and visits it."
+  (interactive)
   (unless path
     (setq path uni-current-course-path))
   (let ((next-num
@@ -944,20 +963,67 @@ whose number is bigger than the last lecture and visits it."
       (insert "* Thema Vorlesung\n")
       (switch-to-buffer (current-buffer)))))
 
+(map!
+ :leader
+ :prefix ("k" . "uni")
+ :desc "New lecture in current"
+ :n "n" #'uni-new-lecture)
+#+end_src
+
+#+begin_src elisp :tangle yes
 (defun uni-init-course (path)
-  "Creates the course directory structure from an info.yml file."
-  (let ((info (uni-get-course-info path)))
-    (with-current-buffer
-        (find-file-noselect (uni--get-master-file path))
+  "Creates the course directory structure."
+  (progn
+    (with-temp-file (expand-file-name "info.yml" path)
       (insert
-       (format "#+TITLE: %s\n" (cdr (assoc 'title info)))
-       "#+INCLUDE: '../preamble.org'
+       (format "title: %s\n" (uni--directory-to-title (file-name-nondirectory path)))
+       "url:
+short:"))
+    (let ((info (uni-get-course-info path)))
+      (with-temp-file (uni--get-master-file path)
+        (insert
+         (format "#+TITLE: %s\n" (cdr (assoc 'title info)))
+         "#+INCLUDE: '../preamble.org'
 
 # begin lectures
 
 # end lectures")
-      (write-file "master.org"))
-    (uni-new-lecture path)))
+        (write-file "master.org"))
+      (uni-new-lecture path))))
+#+end_src
+
+Open course directory, default course bound to =SPC k d=.
+
+#+begin_src emacs-lisp :tangle yes
+(defun uni-open-course-directory (&optional path)
+  "Opens the course directory (default current course)."
+  (interactive)
+  (unless path
+    (let ((path uni-current-course-path))
+      (dired path))))
+
+(map!
+ :leader
+ :prefix ("k" . "uni")
+ :desc "Open course directory"
+ :n "d" #'uni-open-course-directory)
+#+end_src
+
+Select from all files in current course directory, bound to =SPC k f=.
+
+#+begin_src emacs-lisp :tangle yes
+(defun uni-find-file-in-directory (&optional path)
+  "Search for a file in `uni-current-course-path'."
+  (interactive)
+  (unless path
+    (let ((path uni-current-course-path))
+      (doom-project-find-file path)))) ;; TODO show current course in prompt
+
+(map!
+ :leader
+ :prefix ("k" . "uni")
+ :desc "Find file in current course"
+ :n "f" #'uni-find-file-in-directory)
 #+end_src
 
 * Package loading
