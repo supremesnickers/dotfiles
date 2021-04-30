@@ -70,33 +70,17 @@ Changes made using the ~customize-group~ are by default added to th =init.el= fi
 **** Fonts
 I like the 'JetBrains Mono' font, especially in the terminal and everything else related to source code. Because I do occasionally switch around to Iosevka or Fira Mono, I like to keep them all in the config, and just comment out the one I'm not using at the moment.
 #+begin_src elisp :tangle yes
-;; (setq doom-font (font-spec :family "Fira Mono" :size 14 :weight 'medium)
-;;       doom-big-font (font-spec :family "Fira Mono" :size 20 :weight 'medium)
-;;       doom-variable-pitch-font (font-spec :family "Avenir" :size 14 :weight 'regular)
-;;       doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular))
-
-;; (setq doom-font (font-spec :family "JetBrainsMonoMedium Nerd Font Mono" :size 14 :weight 'medium)
-;;       doom-big-font (font-spec :family "JetBrainsMonoMedium Nerd Font Mono" :size 22 :weight 'medium)
-;;       doom-variable-pitch-font (font-spec :family "Avenir" :size 14 :weight 'regular)
-;;       doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular))
-
 (if IS-LINUX
     (setq doom-font (font-spec :family "Victor Mono" :size 17 :weight 'medium)
           doom-big-font (font-spec :family "Victor Mono" :size 25 :weight 'medium)
           doom-variable-pitch-font (font-spec :family "Avenir" :size 17 :weight 'regular)
           doom-unicode-font (font-spec :family "FontAwesome" :size 17 :weight 'regular))
 
-  (setq doom-font (font-spec :family "Victor Mono" :size 15 :weight 'medium)
-        doom-big-font (font-spec :family "Victor Mono" :size 22 :weight 'medium)
+  (setq doom-font (font-spec :family "IBM Plex Mono" :size 14 :height 1.1)
+        doom-big-font (font-spec :family "IBM Plex Mono" :size 22 :height 1.1)
         doom-variable-pitch-font (font-spec :family "Overpass" :size 14 :weight 'regular)
         doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular)
         )
-
-  ;; (setq doom-font (font-spec :family "FantasqueSansMono Nerd Font" :size 16 :weight 'regular)
-  ;;       doom-big-font (font-spec :family "FantasqueSansMono Nerd Font" :size 22 :weight 'regular)
-  ;;       doom-variable-pitch-font (font-spec :family "Avenir" :size 14 :weight 'regular)
-  ;;       doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular))
-
   (setq doom-themes-treemacs-enable-variable-pitch nil)
 
   ;; bigger characters when selecting windows with avy
@@ -756,64 +740,6 @@ Improving org-mode latex export
 ;; (add-to-list 'org-latex-packages-alist
 ;;              '("AUTO" "polyglossia" t ("xelatex" "lualatex")))
 
-#+end_src
-*** Hydra
-#+begin_src elisp :tangle yes
-;; ;; hydra
-;; (defhydra hydra-pdftools (:color blue :hint nil)
-;;         "
-;;                                                                       ╭───────────┐
-;;        Move  History   Scale/Fit     Annotations  Search/Link    Do   │ PDF Tools │
-;;    ╭──────────────────────────────────────────────────────────────────┴───────────╯
-;;          ^^_g_^^      _B_    ^↧^    _+_    ^ ^     [_al_] list    [_s_] search    [_u_] revert buffer
-;;          ^^^↑^^^      ^↑^    _H_    ^↑^  ↦ _W_ ↤   [_am_] markup  [_o_] outline   [_i_] info
-;;          ^^_p_^^      ^ ^    ^↥^    _0_    ^ ^     [_at_] text    [_F_] link      [_d_] dark mode
-;;          ^^^↑^^^      ^↓^  ╭─^─^─┐  ^↓^  ╭─^ ^─┐   [_ad_] delete  [_f_] search link
-;;     _h_ ←pag_e_→ _l_  _N_  │ _P_ │  _-_    _b_     [_aa_] dired
-;;          ^^^↓^^^      ^ ^  ╰─^─^─╯  ^ ^  ╰─^ ^─╯   [_y_]  yank
-;;          ^^_n_^^      ^ ^  _r_eset slice box
-;;          ^^^↓^^^
-;;          ^^_G_^^
-;;    --------------------------------------------------------------------------------
-;;         "
-;;         ("\\" hydra-master/body "back")
-;;         ("<ESC>" nil "quit")
-;;         ("al" pdf-annot-list-annotations)
-;;         ("ad" pdf-annot-delete)
-;;         ("aa" pdf-annot-attachment-dired)
-;;         ("am" pdf-annot-add-markup-annotation)
-;;         ("at" pdf-annot-add-text-annotation)
-;;         ("y"  pdf-view-kill-ring-save)
-;;         ("+" pdf-view-enlarge :color red)
-;;         ("-" pdf-view-shrink :color red)
-;;         ("0" pdf-view-scale-reset)
-;;         ("H" pdf-view-fit-height-to-window)
-;;         ("W" pdf-view-fit-width-to-window)
-;;         ("P" pdf-view-fit-page-to-window)
-;;         ("n" pdf-view-next-page-command :color red)
-;;         ("p" pdf-view-previous-page-command :color red)
-;;         ("d" pdf-view-dark-minor-mode)
-;;         ("b" pdf-view-set-slice-from-bounding-box)
-;;         ("r" pdf-view-reset-slice)
-;;         ("g" pdf-view-first-page)
-;;         ("G" pdf-view-last-page)
-;;         ("e" pdf-view-goto-page)
-;;         ("o" pdf-outline)
-;;         ("s" pdf-occur)
-;;         ("i" pdf-misc-display-metadata)
-;;         ("u" pdf-view-revert-buffer)
-;;         ("F" pdf-links-action-perfom)
-;;         ("f" pdf-links-isearch-link)
-;;         ("B" pdf-history-backward :color red)
-;;         ("N" pdf-history-forward :color red)
-;;         ("l" image-forward-hscroll :color red)
-;;         ("h" image-backward-hscroll :color red))
-;; (map! :leader
-;;       :desc "hydra/window" "o w" #'+hydra/window-nav/body)
-;; (map! :leader
-;;       :desc "hydra/text" "o t" #'+hydra/text-zoom/body)
-;; (map! :leader
-;;       :desc "hydra/pdf" "o P" #'hydra-pdftools/body)
 #+end_src
 *** mu4e
 Display emails in plain text instead of stupid html.
