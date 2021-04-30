@@ -32,6 +32,8 @@ Various improvements to Emacs too numerous to explain in detail.
 #+begin_src elisp :tangle yes
 (add-hook 'emacs-startup-hook 'toggle-frame-maximized) ; startup emacs maximized
 
+(setq comp-async-report-warnings-errors nil)
+
 (setq-default
  delete-by-moving-to-trash t                      ; Delete files to trash
  tab-width 4                                      ; Set width for tabs
@@ -81,20 +83,20 @@ I like the 'JetBrains Mono' font, especially in the terminal and everything else
         doom-variable-pitch-font (font-spec :family "Overpass" :size 14 :weight 'regular)
         doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular)
         )
-  (setq doom-themes-treemacs-enable-variable-pitch nil)
-
-  ;; bigger characters when selecting windows with avy
-  (custom-set-faces!
-    '(aw-leading-char-face
-      :foreground "white" :background "red"
-      :weight bold :height 2.5 :box (:line-width 10 :color "red")))
   )
+(setq doom-themes-treemacs-enable-variable-pitch nil)
+
+;; bigger characters when selecting windows with avy
+(custom-set-faces!
+  '(aw-leading-char-face
+    :foreground "white" :background "red"
+    :weight bold :height 2.5 :box (:line-width 10 :color "red")))
 #+end_src
 Also =org-mode=, in combination with =mixed-pitch-mode=, uses variable-width fonts for text and headings, for which I personally like either 'Overpass' or 'Bahnschrift', the latter is a Microsoft font.
 **** Theming
 I have really grown to like the [[https:github.com/ogdenwebb/emacs-kaolin-themes][kaolin-themes]] collection. Kaolin themes have very good compatibility with dialog boxes from ~ivy~ and others, which I will get to later.
 My favorite dark theme though is Doom's own Tomorrow Night theme, and my my favorite light theme is Zaiste.
-#+begin_src elisp :tangle yes
+#+begin_src emacs-lisp :tangle yes
 ;; (setq doom-theme 'zaiste)
 
 (setq doom-theme 'doom-tomorrow-night)
@@ -108,7 +110,7 @@ My favorite dark theme though is Doom's own Tomorrow Night theme, and my my favo
         kaolin-themes-git-gutter-solid t))
 #+end_src
 On macOS I want the theme to be dependent on the system state (dark or light). This is dependent on a feature currently only available on ~emacs-plus~.
-#+begin_src elisp :tangle yes
+#+begin_src emacs-lisp :tangle yes
 (defun my/apply-theme (appearance)
   "Load theme, taking current system APPEARANCE into consideration."
   (mapc #'disable-theme custom-enabled-themes)
@@ -124,7 +126,7 @@ On macOS I want the theme to be dependent on the system state (dark or light). T
 
 **** Modeline
 For the ~doom-modeline~ I don't like it very cluttered up, which is why I've removed unnecessary information like the current buffer encoding and have enabled project name truncating, which shortens the file path up to the current project path.
-#+begin_src elisp :tangle yes
+#+begin_src emacs-lisp :tangle yes
 (setq all-the-icons-scale-factor 1.1)
 (setq doom-modeline-icon (display-graphic-p)     ; show icon in modeline if in GUI
       doom-modeline-buffer-encoding nil
@@ -139,7 +141,7 @@ For the ~doom-modeline~ I don't like it very cluttered up, which is why I've rem
       doom-modeline-enable-word-count nil)
 #+end_src
 Enabling current time in the modeline.
-#+begin_src elisp :tangle yes
+#+begin_src emacs-lisp :tangle yes
 
 (setq display-time-format "%a %e. %b %H:%M")
 (setq display-time-default-load-average nil)
@@ -147,7 +149,7 @@ Enabling current time in the modeline.
 (after! doom-modeline (display-time-mode 1))                             ; Enable time in the mode-line
 #+end_src
 Finally defining my custom modeline and setting it as default.
-#+begin_src elisp :tangle yes
+#+begin_src emacs-lisp :tangle yes
 ;; (mu4e-alert-enable-mode-line-display)
 
 ;; (doom-modeline-def-modeline 'my-simple-line
@@ -162,12 +164,12 @@ Finally defining my custom modeline and setting it as default.
 #+end_src
 **** Miscellaneous
 I don't really like the default ASCII logo of Doom Emacs, so I replace it with the official Emacs logo.
-#+begin_src elisp :tangle yes
+#+begin_src emacs-lisp :tangle yes
 ;; (setq fancy-splash-image "~/.config/doom/banners/doom-emacs-0.2.ai")
 #+end_src
 Visual line numbers, like the hybrid line numbering in Vim, shows the current line number as well as how far away other lines are from the current, improving navigation.
 Although this can be quite disorienting, I'm just using normal numbering now. To make selecting regions faster, I use evilmotions evilem-motion-next-line to jump to lines.
-#+begin_src elisp :tangle yes
+#+begin_src emacs-lisp :tangle yes
 (setq display-line-numbers-type t)
 #+end_src
 I like the visual cues indenting guides provide, so I change the character to a unconspicuos arrow.
