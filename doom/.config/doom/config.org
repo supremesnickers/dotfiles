@@ -770,6 +770,195 @@ Display emails in plain text instead of stupid html.
     )
   )
 #+end_src
+*** University setup
+Some functions to interact with my lecture notes setup. It is very much based
+off of Gilles Castel's [[https://castel.dev][ setup ]], adopting his general folder structure:
+
+#+begin_example
+uni
+|- pre
+|- bachelor-1
+|  |- semester-1
+|     |- preamble.org
+|     |- lineare-algebra
+|     |- ...
+|
+|- current-course -> lineare-algebra
+#+end_example
+
+=current-course= is a symlink to the currently attended course, which makes
+navigation and shortcuts easier.
+
+The course structure is as follows:
+
+#+begin_example
+lineare-algebra
+|- info.yml
+|- master.org
+|- lec_01.org
+|- lec_02.org
+|- ...
+|- lec_12.org
+#+end_example
+
+The =master.org= file contains all the lectures in the directory and some
+additional course information.
+
+| Action                          | Function                 | Keybinding |
+|---------------------------------+--------------------------+------------|
+| Changing current course symlink | =uni-set-course-symlink= | =SPC k c=  |
+
+
+**** Functions and bindings
+Firstly some of the variables, which specify the setup described above.
+
+#+begin_src emacs-lisp :tangle yes
+(defvar uni-current-semester-path nil
+  "Current semester root path.")
+(defvar uni-current-course-path nil
+  "Current course that I'm acting in.")
+
+(setq uni-root-path "~/org/uni")
+
+(setq uni-current-course-symlink "~/org/uni/current-course")
+
+(setq uni-current-semester-path (concat uni-root-path "/pre"))
+
+(setq uni-current-course-path (file-truename uni-current-course-symlink))
+#+end_src
+
+Utility functions used internally.
+
+#+begin_src emacs-lisp :tangle yes
+(defun uni--get-master-file (path)
+  (expand-file-name "master.org" path))
+
+(defun uni--number-to-filename (num)
+  (format "lec_%02d.org" num)
+  )
+#+end_src
+
+Now follow some general getter functions.
+#+begin_src emacs-lisp :tangle yes
+(defun uni-get-all-courses (&optional path)
+  "Gets all courses of a semester (by default current semester)."
+  (unless path
+    (setq path uni-current-semester-path))
+  (-filter #'file-directory-p
+           (directory-files path 'full (rx (not "\.") eos) 'nosort)))
+
+(defun uni-get-all-lectures (path)
+  (directory-files path 'full
+                   (rx "lec_" (zero-or-more (any num)) "\.org" eos) 'sort))
+
+(defun uni-get-course-info (path)
+  "Reads the toplevel info.yml file and returns a parsed lisp representation."
+  (require 'yaml)
+  (with-current-buffer
+      (find-file-noselect (expand-file-name "info.yml" path))
+    (yaml-parse-string (buffer-substring-no-properties (point-min) (point-max))
+                       :object-type 'alist
+                       :sequence-type 'array
+                       :null-object :empty)))
+#+end_src
+
+This changes which course directory is pointed to the =current-course=
+symlink in the =uni-root-path= directory and then updates the
+=uni-current-course-path= variable accordingly. This is mapped to =SPC k s=.
+
+#+begin_src emacs-lisp :tangle yes
+(defun uni-set-course-symlink (path)
+  (progn
+    (delete-file uni-current-course-symlink)
+    (make-symbolic-link path uni-current-course-symlink)
+    (setq uni-current-course-path (file-truename uni-current-course-symlink))))
+
+(defun uni-choose-course-symlink (&optional path)
+  "Set a course inside the current semester as the current course."
+  (interactive "P")
+  (unless path
+    (setq path (ivy-read "Select course: " (uni-get-all-courses))))
+  (if (-contains? (uni-get-all-courses) path)
+      (uni-set-course-symlink path)
+    (when (y-or-n-p
+           (format "Create new course %s in %s? "
+                   (file-name-nondirectory path)
+                   (file-name-nondirectory uni-current-semester-path)))
+      ())))
+
+(map!
+ :leader
+ :prefix ("k" . "uni")
+ :n "c" #'uni-choose-course-symlink)
+#+end_src
+
+#+begin_src emacs-lisp :tangle yes
+(defun uni-set-current-semester (&optional path)
+  "Set a folder in the uni root directory as the current semester root."
+  (interactive "P")
+  (unless path
+    (setq path (ivy-read "Select semester: "
+                         (-filter (lambda (file) (not (file-symlink-p file))) (directory-files uni-root-path 'full)))))
+  (setq uni-current-semester-path path))
+#+end_src
+
+
+
+#+begin_src elisp :tangle yes
+(defun uni-update-master-with-lectures (path)
+  "Updates the master.org file of the given course to include all lectures."
+  (let ((lecs (uni-get-all-lectures path)))
+    (with-current-buffer
+        (find-file-noselect (uni--get-master-file path))
+      (goto-char (point-min))
+      (search-forward "# begin lectures")
+      (forward-line)
+      (let ((beg (point)))
+        (search-forward "# end lectures")
+        (forward-line -1)
+        (end-of-line)
+        (delete-region beg (point)))
+      (mapc (lambda (lec) (insert (format "#+INCLUDE: \"%s\"\n" lec))) lecs)
+      (delete-backward-char 1)
+      (save-buffer))))
+
+(defun uni-update-all-masters ()
+  (let* ((semesters
+          (-filter
+           (lambda (dir) (and (file-directory-p dir) (not (file-symlink-p dir))))
+           (directory-files uni-root-path 'full (rx (not "\.") eos))))
+         (courses (-map (lambda (sem) (uni-get-all-courses sem)) semesters)))
+    (-map (lambda (course) (uni-update-master-with-lectures course)) (-flatten courses))))
+
+(defun uni-new-lecture (&optional path)
+  "Creates a new lecture org file in a course directory (by default the current),
+whose number is bigger than the last lecture and visits it."
+  (unless path
+    (setq path uni-current-course-path))
+  (let ((next-num
+         (+ 1 (length
+               (directory-files path nil (rx "lec_" (zero-or-more (any num)) "\.org") t)))))
+    (with-current-buffer
+        (find-file-noselect
+         (expand-file-name (uni--number-to-filename next-num) path))
+      (insert "* Thema Vorlesung\n")
+      (switch-to-buffer (current-buffer)))))
+
+(defun uni-init-course (path)
+  "Creates the course directory structure from an info.yml file."
+  (let ((info (uni-get-course-info path)))
+    (with-current-buffer
+        (find-file-noselect (uni--get-master-file path))
+      (insert
+       (format "#+TITLE: %s\n" (cdr (assoc 'title info)))
+       "#+INCLUDE: '../preamble.org'
+
+# begin lectures
+
+# end lectures")
+      (write-file "master.org"))
+    (uni-new-lecture path)))
+#+end_src
 
 * Package loading
 :PROPERTIES:
@@ -832,6 +1021,7 @@ Variable pitch fontification + colouring
 
 (package! esup)
 (package! elisp-autofmt :recipe (:host gitlab :repo "ideasman42/emacs-elisp-autofmt"))
+(package! yaml.el :recipe (:host github :repo "zkry/yaml.el"))
 #+end_src
 
 * rest
