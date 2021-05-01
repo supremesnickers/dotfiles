@@ -157,10 +157,11 @@ Finally defining my custom modeline and setting it as default.
 ;;   '(misc-info minor-modes input-method buffer-encoding mu4e major-mode process vcs checker))
 
 ;; Add to `doom-modeline-mode-hook` or other hooks
-(defun setup-custom-doom-modeline ()
-  (doom-modeline-set-modeline 'my-simple-line 'default))
+;; (defun setup-custom-doom-modeline ()
+;;   (doom-modeline-set-modeline 'my-simple-line 'default))
 
-(add-hook 'doom-modeline-mode-hook 'setup-custom-doom-modeline)
+;; (add-hook 'doom-modeline-mode-hook 'setup-custom-doom-modeline)
+;; (setq global-mode-string (cons (async-start (shell-command-to-string "osascript -l JavaScript ~/dotfiles/tmux/.config/tmux/tunes.js")) global-mode-string)) ;; TODO
 #+end_src
 **** Miscellaneous
 I don't really like the default ASCII logo of Doom Emacs, so I replace it with the official Emacs logo.
@@ -718,7 +719,8 @@ Flashing the cursor on jumps is quite useful.
 (setq org-refile-use-outline-path t)                  ; Show full paths for refiling
 ;; (setq bookmark-default-file '("/Users/supremesnickers/.config/doom/bookmarks"))
 
-(setq deft-directory "~/org")
+(setq deft-directory "~/org/uni"
+      deft-recursive t)
 
 (setq org-fontify-quote-and-verse-blocks t
       org-list-allow-alphabetical t               ; have a. A. a) A) list bullets
@@ -987,11 +989,9 @@ short:"))
       (with-temp-file (uni--get-master-file path)
         (insert
          (format "#+TITLE: %s\n" (cdr (assoc 'title info)))
-         "#+INCLUDE: '../preamble.org'
-
-# begin lectures
-
-# end lectures")
+         (format "#+INCLUDE: '%s/preamble.org'\n" uni-current-semester-path)
+         (concat "# begin lectures\n"
+                 "# end lectures\n"))
         (write-file "master.org"))
       (uni-new-lecture path))))
 #+end_src
