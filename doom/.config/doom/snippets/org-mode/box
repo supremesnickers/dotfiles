@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Box
+# uuid: 
+# key: box
+# condition: t
+# --
+${1:$(concat "┌" (make-string (+ 2 (string-width yas-text)) ?\─) "┐")}
+│ ${1:Content} │
+${1:$(concat "└" (make-string (+ 2 (string-width yas-text)) ?\─) "┘")}
+
+$0

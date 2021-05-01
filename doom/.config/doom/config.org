@@ -1026,6 +1026,15 @@ Select from all files in current course directory, bound to =SPC k f=.
  :n "f" #'uni-find-file-in-directory)
 #+end_src
 
+**** Snippets
+#+begin_src emacs-lisp :tangle yes
+(defun my-yas-try-expanding-auto-snippets ()
+  (when (and (boundp 'yas-minor-mode) yas-minor-mode)
+    (let ((yas-buffer-local-condition ''(require-snippet-condition . auto)))
+      (yas-expand))))
+(add-hook 'post-command-hook #'my-yas-try-expanding-auto-snippets)
+#+end_src
+
 * Package loading
 :PROPERTIES:
 :header-args:elisp: :tangle "packages.el" :comments no
@@ -1064,11 +1073,6 @@ Variable pitch fontification + colouring
 (package! org-super-agenda)
 ;; (package! ox-reveal)
 (package! ox-hugo)
-#+end_src
-*** Snippets
-#+begin_src elisp
-;; (package! doom-snippets :ignore t)
-(package! yasnippet-snippets)
 #+end_src
 *** Web
 #+begin_src elisp

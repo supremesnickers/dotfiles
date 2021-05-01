@@ -1,4 +1,0 @@
-# -*- mode: snippet -*-
-# name: org-minimal-setup-link
-# --
-#+SETUPFILE: ~/org/org-minimal-theme.setup

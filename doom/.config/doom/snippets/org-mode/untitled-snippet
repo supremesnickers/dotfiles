@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: test-regex
+# uuid: 
+# key: '[A-Za-z](\d)'
+# condition: t
+# --
+regex test $0

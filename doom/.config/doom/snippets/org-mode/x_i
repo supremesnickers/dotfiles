@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: x_i
+# uuid: x_i
+# key: xii
+# condition: 'auto
+# --
+x_{i}

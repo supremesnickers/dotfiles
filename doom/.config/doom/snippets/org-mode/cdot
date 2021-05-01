@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: cdot
+# uuid: cdot
+# key: **
+# condition: t
+# --
+\cdot

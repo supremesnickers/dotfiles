@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: not-equals
+# uuid: not-equals
+# key: !=
+# condition: 'auto
+# --
+\neq
