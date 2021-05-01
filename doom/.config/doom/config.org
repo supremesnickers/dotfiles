@@ -851,7 +851,7 @@ Now follow some general getter functions.
   (unless path
     (setq path uni-current-semester-path))
   (-filter #'file-directory-p
-           (directory-files path 'full (rx (not "\.") eos) 'nosort)))
+           (directory-files path 'full (rx bos (not "\.")) 'nosort)))
 
 (defun uni-get-all-lectures (path)
   (directory-files path 'full
@@ -911,7 +911,9 @@ symlink in the =uni-root-path= directory and then updates the
   (interactive "P")
   (unless path
     (setq path (ivy-read "Select semester: "
-                         (-filter (lambda (file) (not (file-symlink-p file))) (directory-files uni-root-path 'full)))))
+                         (-filter
+                          (lambda (file) (and (file-directory-p file) (not (file-symlink-p file))))
+                          (directory-files uni-root-path 'full (rx (not "\.") eos))))))
   (setq uni-current-semester-path path))
 #+end_src
 
@@ -931,11 +933,13 @@ Update the =master.org= file with all the lectures in the course directory.
         (forward-line -1)
         (end-of-line)
         (delete-region beg (point)))
-      (mapc (lambda (lec) (insert (format "#+INCLUDE: \"%s\"\n" lec))) lecs)
-      (delete-backward-char 1)
+      (mapc (lambda (lec) (insert (format "#+INCLUDE: \"%s\"\n" (file-name-nondirectory lec)))) lecs)
+      (delete-char 1)
       (save-buffer))))
 
 (defun uni-update-all-masters ()
+  "Updates all available master files with their lectures."
+  (interactive)
   (let* ((semesters
           (-filter
            (lambda (dir) (and (file-directory-p dir) (not (file-symlink-p dir))))
