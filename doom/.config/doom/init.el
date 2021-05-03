@@ -23,11 +23,11 @@
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        (ivy
-       +icons
-       +prescient
-       +childframe
-       +fuzzy
-       )
+        +icons
+        +prescient
+        +childframe
+        +fuzzy)
+       
 
        :ui
        deft              ; notational velocity for Emacs
@@ -36,12 +36,12 @@
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
-       hydra
-       ;; indent-guides     ; highlighted indent columns
-       ;; minimap           ; show a map of the code on the side
-       (modeline)          ; snazzy, Atom-inspired modeline, plus API
+       ;;hydra
+       ;;indent-guides     ; highlighted indent columns
+       ;;minimap           ; show a map of the code on the side
+       modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink cursor line after big motions
-       ;; neotree           ; a project drawer, like NERDTree for vim
+       ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
        (popup +defaults)   ; tame sudden yet inevitable temporary windows
        (ligatures +iosevka)
@@ -63,7 +63,7 @@
        ;;lispy             ; vim for lisp, for people who don't like vim
        multiple-cursors  ; editing in many places at once
        ;;objed             ; text object editing for the innocent
-       ;;parinfer          ; turn lisp into python, sort of
+       (parinfer +rust)          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
        snippets          ; my elves. They type so I don't have to
        ;;word-wrap         ; soft wrapping with language-aware indent
@@ -99,9 +99,9 @@
        (lookup
         +dictionary
         ;; +devdocs
-        +offline
+        +offline)
         ;; +docsets
-        )              ; navigate your code and its documentation
+                      ; navigate your code and its documentation
        ;;lsp
        magit             ; a git porcelain for Emacs
        ;; make              ; run make tasks from Emacs
@@ -160,16 +160,17 @@
         +babel
         +present
         ;; +gnuplot
-        +pandoc
+        +pandoc)
         ;; +jupyter
-        )               ; organize your plain life in plain text
+                       ; organize your plain life in plain text
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;; purescript        ; javascript, but functional
-       python            ; beautiful is better than ugly
+       (python +lsp)            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
-       ;; racket            ; a DSL for DSLs
+       ;;racket            ; a DSL for DSLs
+       ;;raku              ; the artist formerly known as perl6
        ;;rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
        ;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
@@ -190,7 +191,9 @@
        ;; (wanderlust)
 
        :app
-       ;; calendar
+       ;;calendar
+       ;;emms
+       ;;everywhere        ; *leave* Emacs!? You must be joking
        ;;irc               ; how neckbeards socialize
        (rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
@@ -200,7 +203,5 @@
        macos             ; MacOS-specific commands
 
        :config
-       ;;
-       (default +bindings)
        literate
-       )
+       (default +bindings +smartparens))
