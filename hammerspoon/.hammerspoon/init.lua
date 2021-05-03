@@ -1,3 +1,7 @@
+hs.loadSpoon('Ki')
+spoon.Ki.workflowEvents = {...}    -- configure `spoon.Ki` here
+spoon.Ki:start()
+
 function reloadConfig(files)
 doReload = false
 for _,file in pairs(files) do

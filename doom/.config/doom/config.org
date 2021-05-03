@@ -928,10 +928,10 @@ Update the =master.org= file with all the lectures in the course directory.
     (with-current-buffer
         (find-file-noselect (uni--get-master-file path))
       (goto-char (point-min))
-      (search-forward "# begin lectures")
+      (re-search-forward "^\# begin lectures")
       (forward-line)
       (let ((beg (point)))
-        (search-forward "# end lectures")
+        (re-search-forward "^\# end lectures")
         (forward-line -1)
         (end-of-line)
         (delete-region beg (point)))
@@ -983,8 +983,7 @@ whose number is bigger than the last lecture and visits it."
     (with-temp-file (expand-file-name "info.yml" path)
       (insert
        (format "title: %s\n" (uni--directory-to-title (file-name-nondirectory path)))
-       "url:
-short:"))
+       (concat "url:\n" "short:\n")))
     (let ((info (uni-get-course-info path)))
       (with-temp-file (uni--get-master-file path)
         (insert
@@ -1031,12 +1030,49 @@ Select from all files in current course directory, bound to =SPC k f=.
 #+end_src
 
 **** Snippets
+:LOGBOOK:
+CLOCK: [2021-05-03 Mon 08:44]--[2021-05-03 Mon 09:09] =>  0:25
+:END:
+This adds a condition for yasnippet called ='auto=, that enables auto-
+expansion for the trigger key.
 #+begin_src emacs-lisp :tangle yes
 (defun my-yas-try-expanding-auto-snippets ()
   (when (and (boundp 'yas-minor-mode) yas-minor-mode)
     (let ((yas-buffer-local-condition ''(require-snippet-condition . auto)))
       (yas-expand))))
 (add-hook 'post-command-hook #'my-yas-try-expanding-auto-snippets)
+#+end_src
+
+#+begin_src emacs-lisp :tangle yes
+(use-package aas
+  :hook (LaTeX-mode . ass-activate-for-major-mode)
+  :hook (org-mode . ass-activate-for-major-mode))
+
+(use-package! laas
+  :hook (LaTeX-mode . laas-mode)
+  :hook (org-mode . laas-mode)
+  :config ; do whatever here
+  (aas-set-snippets 'laas-mode
+                    ;; set condition!
+                    :cond #'texmathp ; expand only while in math
+                    "supp" "\\supp"
+                    "On" "O(n)"
+                    "O1" "O(1)"
+                    "Olog" "O(\\log n)"
+                    "Olon" "O(n \\log n)"
+                    ;; bind to functions!
+                    "\\\\" (lambda () (interactive)
+                             (yas-expand-snippet "\\frac{$1}{$2}$0"))
+                    "Span" (lambda () (interactive)
+                             (yas-expand-snippet "\\Span($1)$0"))))
+
+(after! laas-mode
+  (aas--format-doc-to-org 'laas-subscript-snippets)
+  (aas--format-snippet-array laas-subscript-snippets)
+  (aas--format-doc-to-org 'laas-frac-snippet)
+  (aas--format-snippet-array laas-frac-snippet)
+  (aas--format-doc-to-org 'laas-accent-snippets)
+  (aas--format-snippet-array laas-accent-snippets))
 #+end_src
 
 * Package loading
@@ -1077,6 +1113,9 @@ Variable pitch fontification + colouring
 (package! org-super-agenda)
 ;; (package! ox-reveal)
 (package! ox-hugo)
+
+(package! aas)
+(package! laas)
 #+end_src
 *** Web
 #+begin_src elisp
@@ -1193,7 +1232,7 @@ Slightly improving performance when loading the configuration file by defining t
 
 ;; elfeed
 (after! elfeed
-  (setq elfeed-search-filter "@1-month-ago +unread"))
+  (setq elfeed-search-filter "@1-month-ago +unread "))
 (map! :leader
       :prefix ("o" . "open")
       :desc "Elfeed" "E" #'=rss)

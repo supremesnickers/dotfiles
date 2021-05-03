@@ -16,8 +16,8 @@
 ;; (package! ox-reveal)
 (package! ox-hugo)
 
-;; (package! doom-snippets :ignore t)
-(package! yasnippet-snippets)
+(package! aas)
+(package! laas)
 
 (package! htmlize)
 (package! web-beautify)
@@ -31,3 +31,5 @@
 (package! exec-path-from-shell)
 
 (package! esup)
+(package! elisp-autofmt :recipe (:host gitlab :repo "ideasman42/emacs-elisp-autofmt"))
+(package! yaml.el :recipe (:host github :repo "zkry/yaml.el"))
