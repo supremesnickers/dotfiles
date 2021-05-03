@@ -52,10 +52,7 @@ Various improvements to Emacs too numerous to explain in detail.
 
 (exec-path-from-shell-initialize)
 
-;; (if (equal "Power AC, battery N/A (N/A% load, remaining time N/A)"
-;;            (battery))
-;;     (setq display-battery-mode nil)
-;;   (setq display-battery-mode t))                       ; On laptops it's nice to know how much power you have
+(when IS-LINUX (display-battery-mode))            ; On laptops it's nice to know how much power you have
 
 (global-subword-mode 1)                           ; Iterate through CamelCase words
 #+end_src
@@ -73,17 +70,16 @@ Changes made using the ~customize-group~ are by default added to th =init.el= fi
 I like the 'JetBrains Mono' font, especially in the terminal and everything else related to source code. Because I do occasionally switch around to Iosevka or Fira Mono, I like to keep them all in the config, and just comment out the one I'm not using at the moment.
 #+begin_src emacs-lisp :tangle yes
 (if IS-LINUX
-    (setq doom-font (font-spec :family "Victor Mono" :size 17 :weight 'medium)
-          doom-big-font (font-spec :family "Victor Mono" :size 25 :weight 'medium)
-          doom-variable-pitch-font (font-spec :family "Avenir" :size 17 :weight 'regular)
+    (setq doom-font (font-spec :family "Victor Mono" :size 14 :weight 'medium)
+          doom-big-font (font-spec :family "Victor Mono" :size 22 :weight 'medium)
+          doom-variable-pitch-font (font-spec :family "Inter" :size 17 :weight 'regular)
           doom-unicode-font (font-spec :family "FontAwesome" :size 17 :weight 'regular))
 
   (setq doom-font (font-spec :family "IBM Plex Mono" :size 14 :height 1.1)
         doom-big-font (font-spec :family "IBM Plex Mono" :size 22 :height 1.1)
         doom-variable-pitch-font (font-spec :family "Overpass" :size 14 :weight 'regular)
-        doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular)
-        )
-  )
+        doom-unicode-font (font-spec :family "FontAwesome" :size 14 :weight 'regular)))
+
 (setq doom-themes-treemacs-enable-variable-pitch nil)
 
 ;; bigger characters when selecting windows with avy
@@ -118,10 +114,7 @@ On macOS I want the theme to be dependent on the system state (dark or light). T
     ('light (counsel-load-theme-action "zaiste"))
     ('dark (counsel-load-theme-action "doom-tomorrow-night"))))
 
-(when IS-MAC
-  (progn
-    (add-hook 'ns-system-appearance-change-functions 'my/apply-theme)
-    ))
+(when IS-MAC (add-hook 'ns-system-appearance-change-functions 'my/apply-theme))
 #+end_src
 
 **** Modeline
@@ -659,22 +652,22 @@ Flashing the cursor on jumps is quite useful.
 ;;         ;;   "* record %^{record on what topic}%? :private:\n :properties:\n :captured: %u\n :end:\n\n %i"))
 ;;         ))
 
-;; (setq hl-todo-keyword-faces
-;;       '(("TODO"      . warning)
-;;         ("ACT"       . warning)
-;;         ("BUY"       . warning)
-;;         ("MEET"      . warning)
-;;         ("STUDY"     . warning)
-;;         ("REVIEW"    . warning)
-;;         ("FIXME"     . warning)
-;;         ("DONE"      . success)
-;;         ("ACTED"     . success)
-;;         ("BOUGHT"    . success)
-;;         ("MET"       . success)
-;;         ("STUDIED"   . success)
-;;         ("CANCELLED"  . error)
-;;         ("POSTPONED" . error)
-;;         ))
+(setq hl-todo-keyword-faces
+      '(("TODO"      . warning)
+        ("ACT"       . warning)
+        ("BUY"       . warning)
+        ("MEET"      . warning)
+        ("STUDY"     . warning)
+        ("REVIEW"    . warning)
+        ("FIXME"     . warning)
+        ("DONE"      . success)
+        ("ACTED"     . success)
+        ("BOUGHT"    . success)
+        ("MET"       . success)
+        ("STUDIED"   . success)
+        ("CANCELLED"  . error)
+        ("POSTPONED" . error)
+        ))
 
 ;; ;; stolen from reddit
 ;; (setq-hook! org-mode
