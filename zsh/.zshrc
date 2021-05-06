@@ -1,12 +1,19 @@
+# oh my zsh
+source "$HOME/.oh-my-zsh/oh-my-zsh.sh"
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 source ~/dotfiles/zsh/functions.zsh
+source ~/dotfiles/zsh/alias.zsh
 
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # zsh shell config @hoangolo
-export ZSH="~/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 plugins=(brew nix-zsh-completions git poetry colored-man-pages tmuxinator web-search command-not-found osx)
+
 # color the username and stuff
 autoload -Uz compinit && compinit
 autoload -U colors && colors
@@ -21,28 +28,17 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 _comp_options+=(globdots)		# Include hidden files.
 
-alias ee='emacsclient -n'
-alias weather='curl wttr.in'
-alias svim='sudo nvim'
-alias lx='exa --group-directories-first'
-alias mux='tmuxinator'
-alias lg='lazygit'
-
 GOPATH=$(go env GOPATH)
 
 export PATH="$HOME/.deno/bin:/usr/local/bin:$HOME/.node/bin:$HOME/.cargo/bin:$PATH:$HOME/scripts:$HOME/.emacs.d/bin:$HOME/.composer/vendor/bin:$GOPATH/bin"
 export PATH="$PATH:/usr/local/opt/openjdk/bin"
 export NODE_PATH="$HOME/.node/lib/node_modules:$NODE_PATH"
 export PATH="${PATH}:${HOME}/.local/bin/"
+export PATH="$HOME/.poetry/bin:$PATH"
 
 export CARGO_TARGET_DIR="$HOME/cs/rust_builds"
 
 source "$HOME/.cargo/env"
-
-source ~/.oh-my-zsh/oh-my-zsh.sh
-
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 launchctl setenv PATH $PATH
 eval "$(starship init zsh)"
@@ -57,5 +53,3 @@ if [ -f '/Users/supremesnickers/Downloads/google-cloud-sdk/path.zsh.inc' ]; then
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/supremesnickers/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/supremesnickers/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
-export PATH="$HOME/.poetry/bin:$PATH"
