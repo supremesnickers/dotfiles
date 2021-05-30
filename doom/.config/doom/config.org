@@ -50,8 +50,6 @@ Various improvements to Emacs too numerous to explain in detail.
 
 (delete-selection-mode 1)                         ; Replace selection when inserting text
 
-(exec-path-from-shell-initialize)
-
 (when IS-LINUX (display-battery-mode))            ; On laptops it's nice to know how much power you have
 
 (global-subword-mode 1)                           ; Iterate through CamelCase words
@@ -1123,7 +1121,6 @@ Variable pitch fontification + colouring
 ;; (package! emms)
 (package! dired-subtree)
 (package! mu4e-alert)
-(package! exec-path-from-shell)
 
 (package! esup)
 (package! elisp-autofmt :recipe (:host gitlab :repo "ideasman42/emacs-elisp-autofmt"))
