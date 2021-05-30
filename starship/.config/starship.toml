@@ -26,7 +26,7 @@ style = "bold blue"
 [directory]
 # "truncation_symbol" = "..."
 "truncation_length" = 2
-"truncate_to_rep" = true
+"truncate_to_repo" = true
 "style" = "blue"
 
 [username]
