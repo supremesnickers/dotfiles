@@ -28,7 +28,6 @@
 ;; (package! emms)
 (package! dired-subtree)
 (package! mu4e-alert)
-(package! exec-path-from-shell)
 
 (package! esup)
 (package! elisp-autofmt :recipe (:host gitlab :repo "ideasman42/emacs-elisp-autofmt"))
