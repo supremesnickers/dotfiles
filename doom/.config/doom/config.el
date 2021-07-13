@@ -28,7 +28,8 @@
 
 (delete-selection-mode 1)                         ; Replace selection when inserting text
 
-(when IS-LINUX (display-battery-mode))            ; On laptops it's nice to know how much power you have
+(when IS-LINUX
+    (menu-bar-mode 0))
 
 (global-subword-mode 1)                           ; Iterate through CamelCase words
 ;; Simple settings:1 ends here

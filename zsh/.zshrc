@@ -4,6 +4,12 @@
 source "$HOME/.oh-my-zsh/oh-my-zsh.sh"
 [ -f "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+if [ $(uname) = "Linux" ]; then
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+    source /usr/share/doc/fzf/examples/completion.zsh
+fi
+
 source ~/dotfiles/zsh/functions.zsh
 source ~/dotfiles/zsh/alias.zsh
 
@@ -21,7 +27,7 @@ autoload -U colors && colors
 # deprecated due to the amazing starship prompt
 #PS1="%B%{$fg[red]%}[%{$fg[green]%}%n%{$fg[blue]%}@%{$fg[yellow]%}%M %{$fg[blue]%}%~%{$fg[red]%}]%{$fg[blue]%}$%b "
 
-export EDITOR="nvim"
+export EDITOR="emacs -nw"
 
 # Tab completion
 zstyle ':completion:*' menu select
@@ -36,10 +42,10 @@ export NODE_PATH="$HOME/.node/lib/node_modules:$NODE_PATH"
 # all rust builds end up in one central folder for easy cleanup
 export CARGO_TARGET_DIR="$HOME/cs/rust_builds"
 
-source "$HOME/.cargo/env"
 
 # macOS specific
 if [ $(uname) = "Darwin" ]; then
+    source "$HOME/.cargo/env"
     launchctl setenv PATH $PATH
     [ -f "${HOME}/.iterm2_shell_integration.zsh" ] && source "${HOME}/.iterm2_shell_integration.zsh"
 fi
@@ -54,6 +60,13 @@ eval "$(zoxide init zsh)"
 
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+if [ $(uname) = "Linux" ]; then
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
